@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VolyaCraft | Політичний Minecraft сервер</title>
+
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    min-height: 100vh;
+    color: white;
+    text-align: center;
+    background: linear-gradient(to top, #ffd700 0%, #ffcc33 20%, #4da6ff 60%, #0057b7 100%);
+}
+
+header {
+    padding: 80px 20px 40px;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+}
+
+header h1 {
+    font-size: 52px;
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 20px;
+    opacity: 0.95;
+}
+
+.section {
+    padding: 30px 20px;
+}
+
+.description {
+    max-width: 750px;
+    margin: 20px auto;
+    line-height: 1.7;
+    font-size: 18px;
+}
+
+.ip-box {
+    margin: 30px auto;
+    padding: 18px;
+    background: rgba(0,0,0,0.35);
+    backdrop-filter: blur(6px);
+    border-radius: 12px;
+    font-size: 20px;
+    width: 320px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.ip-box:hover {
+    transform: scale(1.05);
+    background: rgba(0,0,0,0.5);
+}
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+button {
+    padding: 14px 28px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.discord-btn {
+    background: #5865F2;
+    color: white;
+}
+.discord-btn:hover {
+    background: #4752c4;
+}
+
+.disflip-btn {
+    background: #ff9900;
+    color: white;
+}
+.disflip-btn:hover {
+    background: #e68a00;
+}
+
+footer {
+    padding: 15px;
+    font-size: 14px;
+    opacity: 0.9;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>VolyaCraft</h1>
+    <p>Український політичний майнкрафт сервер</p>
+</header>
+
+<div class="section">
+    <h2>📜 Коротко про сервер</h2>
+
+    <div class="description">
+        VolyaCraft — український політичний майнкрафт сервер, де можна створювати
+        міста, нації, варити пиво, заробляти гроші, будувати рп споруди та багато іншого.
+    </div>
+
+    <div class="ip-box" id="serverIP" onclick="copyIP()">
+        volyacraft.pp.ua:20020
+    </div>
+
+    <div class="button-group">
+        <button class="discord-btn" onclick="joinDiscord()">Приєднатись до Discord</button>
+        <button class="disflip-btn" onclick="joinDisflip()">Наша сторінка на Disflip</button>
+    </div>
+</div>
+
+<footer>
+    © 2026 VolyaCraft | Всі права захищені
+</footer>
+
+<script>
+function copyIP() {
+    const ip = document.getElementById("serverIP").innerText;
+    navigator.clipboard.writeText(ip);
+    alert("IP серверу скопійовано!");
+}
+
+function joinDiscord() {
+    window.location.href = "https://discord.gg/57nWapUgvT";
+}
+
+function joinDisflip() {
+    window.location.href = "https://disflip.com/guild/1414285364415299809";
+}
+</script>
+
+</body>
+</html>
