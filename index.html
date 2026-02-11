@@ -88,7 +88,15 @@ button {
     color: white;
 }
 .donate-btn:hover {
-    background: #15940c;
+    background: #106e09;
+}
+    
+.map-btn {
+    background: #de9a07;
+    color: white;
+}
+.map-btn:hover {
+    background: #8f6409;
 }
     
 .disflip-btn {
@@ -134,6 +142,7 @@ footer {
         <button class="discord-btn" onclick="joinDiscord()">Приєднатись до Discord
         <button class="donate-btn" onclick="Donate()">Донат</button>
         <button class="disflip-btn" onclick="joinDisflip()">Наша сторінка на Disflip</button>
+        <button class="map-btn" onclick="Map()">Мапа</button>
     </div>
 </div>
 
@@ -155,13 +164,19 @@ function joinDiscord() {
 function joinDisflip() {
     window.location.href = "https://disflip.com/guild/1414285364415299809";
 }
+    
 function Donate() {
     window.location.href = "Donate.html";
+}  
+
+function Map() {
+    window.location.href = "http://volyacraft.pp.ua:20088/";
 }  
 </script>
 
 </body>
 </html>
+
 
 
 
