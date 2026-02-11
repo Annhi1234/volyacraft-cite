@@ -82,7 +82,15 @@ button {
 .discord-btn:hover {
     background: #4752c4;
 }
-
+    
+.donate-btn {
+    background: #159e0b;
+    color: white;
+}
+.donate-btn:hover {
+    background: #15940c;
+}
+    
 .disflip-btn {
     background: #ff9900;
     color: white;
@@ -123,7 +131,8 @@ footer {
     
     
     <div class="button-group">
-        <button class="discord-btn" onclick="joinDiscord()">Приєднатись до Discord</button>
+        <button class="discord-btn" onclick="joinDiscord()">Приєднатись до Discord
+        <button class="donate-btn" onclick="Donate()">Донат</button>
         <button class="disflip-btn" onclick="joinDisflip()">Наша сторінка на Disflip</button>
     </div>
 </div>
@@ -146,10 +155,14 @@ function joinDiscord() {
 function joinDisflip() {
     window.location.href = "https://disflip.com/guild/1414285364415299809";
 }
+function Donate() {
+    window.location.href = "Donate.html";
+}  
 </script>
 
 </body>
 </html>
+
 
 
 
