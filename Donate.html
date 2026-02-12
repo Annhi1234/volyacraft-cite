@@ -28,7 +28,31 @@
         padding: 30px;
         border-radius: 15px;
         backdrop-filter: blur(5px);
-    
+}
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+button {
+    padding: 14px 28px;
+    font-size: 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s ease;    
+}
+
+.back-btn {
+    background: #5865F2;
+    color: white;
+}
+.back-btn:hover {
+    background: #4752c4;
 }
  h1 {
         font-size: 28px;
@@ -61,7 +85,7 @@
 <body>
     <div class="donate-container"> 
     <h1>Донати</h1>
-    <h2>Писати з приводу донату в пп Смурфіка(у діскорді)</h2>
+    <button class="back-btn" onclick="Back()">Назад</button>
     <p>
 <h2>Козак<h2>
     <p>
@@ -137,9 +161,18 @@
         <h3>© 2026 VolyaCraft | Всі права захищені<h3>
     </footer>
     </div>
-    
+</div>            
+</script>
+}  
+
+function Back() {
+    window.location.href = "index.html";
+}  
+</script>
+            
 </body>
 </html>
+
 
 
 
