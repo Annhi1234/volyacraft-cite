@@ -13,28 +13,39 @@ body {
     min-height: 100vh;
     color: white;
     text-align: center;
-    background: linear-gradient(to top, #ffd700 0%, #debc09 37%, #cc33 20%, #0057b7 32%);
+    background: linear-gradient(to top, 
+        #ffaa00 0%, 
+        #ffaa00 15%, 
+        #e6a100 25%, 
+        #cc9900 35%, 
+        #4da6ff 60%, 
+        #0057b7 85%, 
+        #003d7a 100%
+    );
+    background-attachment: fixed;
 }
 
 .donate-container {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(0, 0, 0, 0.25);
     width: 90%;
     max-width: 1000px;
     margin: 40px auto;
     padding: 30px;
     border-radius: 15px;
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
 }
 
 h1 {
     text-align: center;
     margin-bottom: 20px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
 }
 
 .rank {
     margin-bottom: 40px;
     padding-bottom: 20px;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
+    border-bottom: 1px solid rgba(255,255,255,0.15);
 }
 
 .rank img {
@@ -42,18 +53,21 @@ h1 {
     display: block;
     margin: 35px auto;
     border-radius: 13px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
 }
 
 .rank h2 {
     margin-bottom: 15px;
     font-size: 2rem;
     font-weight: 700;
+    text-shadow: 0 2px 3px rgba(0,0,0,0.4);
 }
 
 .rank p {
     margin-bottom: 15px;
     font-weight: bold;
     font-size: 1.2rem;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
 }
 
 .button-group {
@@ -67,7 +81,9 @@ button {
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    transition: 0.3s ease;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
 }
 
 .back-btn {
@@ -77,20 +93,37 @@ button {
 
 .back-btn:hover {
     background: #08135e;
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
 }
+
 .buy-btn {
-    background: #dee609;
+    background: #e6b800;
     color: white;
 }
 
 .buy-btn:hover {
-    background: #74780b;
+    background: #cc9900;
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
 }
+
 footer {
     text-align: center;
     margin-top: 30px;
     font-size: 14px;
-    opacity: 0.8;
+    opacity: 0.9;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+/* Спеціально для блоку Кейси - читабельність */
+.rank:last-child p {
+    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+
+.rank:last-child p em {
+    opacity: 0.95;
+    font-style: italic;
 }
 </style>
 </head>
@@ -179,7 +212,3 @@ function Buy() {
 
 </body>
 </html>
-
-
-
-
