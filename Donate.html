@@ -72,7 +72,14 @@ button {
 .back-btn:hover {
     background: #4752c4;
 }
+.buy-btn {
+    background: #5865F2;
+    color: white;
+}
 
+.buy-btn:hover {
+    background: #4752c4;
+}
 footer {
     text-align: center;
     margin-top: 30px;
@@ -90,6 +97,7 @@ footer {
 
 <div class="button-group">
     <button class="back-btn" onclick="Back()">Назад</button>
+    <button class="buy-btn" onclick="Buy()">Купить</button>
 </div>
 
 <div class="rank">
@@ -158,8 +166,12 @@ footer {
 function Back() {
     window.location.href = "index.html";
 }
+function Buy() {
+    window.location.href = "buy.html";
+}
 </script>
 
 </body>
 </html>
+
 
