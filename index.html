@@ -25,11 +25,6 @@ header h1 {
     font-size: 52px;
     margin-bottom: 10px;
 }
-    
-descripe h3 {
-    font-size: 11px;
-    margin-bottom: 10px;
-}
 
 header p {
     font-size: 20px;
@@ -47,17 +42,25 @@ header p {
     font-size: 18px;
 }
 
+.ip-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 25px;
+}
+
 .ip-box {
-    margin: 30px auto;
-    padding: 18px;
+    padding: 18px 25px;
     background: rgba(0,0,0,0.35);
     backdrop-filter: blur(6px);
     border-radius: 12px;
-    font-size: 20px;
-    width: 320px;
+    font-size: 18px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: 0.3s ease;
+    min-width: 260px;
 }
+
 .ip-box:hover {
     transform: scale(1.05);
     background: rgba(0,0,0,0.5);
@@ -68,7 +71,7 @@ header p {
     justify-content: center;
     flex-wrap: wrap;
     gap: 15px;
-    margin-top: 20px;
+    margin-top: 30px;
 }
 
 button {
@@ -80,37 +83,17 @@ button {
     transition: 0.3s ease;
 }
 
-.discord-btn {
-    background: #5865F2;
-    color: white;
-}
-.discord-btn:hover {
-    background: #4752c4;
-}
-    
-.donate-btn {
-    background: #159e0b;
-    color: white;
-}
-.donate-btn:hover {
-    background: #106e09;
-}
-    
-.map-btn {
-    background: #de9a07;
-    color: white;
-}
-.map-btn:hover {
-    background: #8f6409;
-}
-    
-.disflip-btn {
-    background: #ff9900;
-    color: white;
-}
-.disflip-btn:hover {
-    background: #e68a00;
-}
+.discord-btn { background: #5865F2; color: white; }
+.discord-btn:hover { background: #4752c4; }
+
+.donate-btn { background: #159e0b; color: white; }
+.donate-btn:hover { background: #106e09; }
+
+.map-btn { background: #de9a07; color: white; }
+.map-btn:hover { background: #8f6409; }
+
+.disflip-btn { background: #ff9900; color: white; }
+.disflip-btn:hover { background: #e68a00; }
 
 footer {
     padding: 15px;
@@ -131,31 +114,23 @@ footer {
     <h2>📜 Коротко про сервер</h2>
 
     <div class="description">
-        <h3>
         VolyaCraft — український політичний майнкрафт сервер, де можна створювати
         міста, нації, варити пиво, заробляти гроші, будувати рп споруди та багато іншого.
         Більше інформації ви можете знайти у діскорді!
-        <h3>
     </div>
-    <div class="description">
-        <h2>Java айпі серверу:<h2>
+
+    <h2>🎮 Підключення</h2>
+
+    <div class="ip-container">
+        <div class="ip-box" onclick="copyIP('volyacraft.pp.ua:20020')">
+            Java: volyacraft.pp.ua:20020
+        </div>
+
+        <div class="ip-box" onclick="copyIP('volyacraft.pp.ua:20080')">
+            Bedrock: volyacraft.pp.ua:20080
+        </div>
     </div>
-    <div class="ip-box" id="serverIP" onclick="copyIP(Джава)">
-        volyacraft.pp.ua:20020
-    </div>
-    <div class="description">
-        <h2>Bedrok айпі серверу:<h2>
-    </div>
-    <div class="ip-box" id="serverIP" onclick="copyIP(Джава)">
-        volyacraft.pp.ua
-    </div>
-    <div class="description">
-        <h2>Порт:<h2>
-    </div>
-    <div class="ip-box" id="serverIP" onclick="copyIP(Джава)">
-        20080
-    </div>
-    
+
     <div class="button-group">
         <button class="discord-btn" onclick="joinDiscord()">Приєднатись до Discord</button>
         <button class="donate-btn" onclick="Donate()">Донат</button>
@@ -169,10 +144,9 @@ footer {
 </footer>
 
 <script>
-function copyIP() {
-    const ip = document.getElementById("serverIP").innerText;
+function copyIP(ip) {
     navigator.clipboard.writeText(ip);
-    alert("IP серверу скопійовано!");
+    alert("Скопійовано: " + ip);
 }
 
 function joinDiscord() {
@@ -194,15 +168,3 @@ function Map() {
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
