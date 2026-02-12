@@ -1,206 +1,164 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=, initial-scale=1.0">
-    <title>VolyaCraft|Donate</title>
-    <style>
-        body {
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VolyaCraft | Donate</title>
+
+<style>
+body {
     font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     margin: 0;
-    overflow: auto;
     background-color: #121212;
-}
-        
-.donate-container img {
-    max-width: 320px;
-    margin-bottom: 20px;
+    color: white;
 }
 
 .donate-container {
-        background: rgba(255, 255, 255, 0.05);
-        width: 80%;
-        max-width: 900px;
-        margin: 40px auto;
-        padding: 30px;
-        border-radius: 15px;
-        backdrop-filter: blur(5px);
+    background: rgba(255, 255, 255, 0.05);
+    width: 90%;
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 30px;
+    border-radius: 15px;
+    backdrop-filter: blur(5px);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.rank {
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.rank img {
+    max-width: 250px;
+    display: block;
+    margin: 15px auto;
+    border-radius: 10px;
+}
+
+.rank h2 {
+    margin-bottom: 10px;
+}
+
+.rank p {
+    margin: 5px 0;
+    line-height: 1.6;
 }
 
 .button-group {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 15px;
-    margin-top: 20px;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
 button {
-    padding: 14px 28px;
-    font-size: 20px;
+    padding: 12px 24px;
+    font-size: 18px;
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    transition: 0.3s ease;    
+    transition: 0.3s ease;
 }
 
 .back-btn {
     background: #5865F2;
     color: white;
 }
+
 .back-btn:hover {
     background: #4752c4;
 }
- h1 {
-        font-size: 28px;
-        margin-bottom: 15px;
-        color: white;
-    }
 
-     h2 {
-        font-size: 22px;
-        margin-top: 10px;
-        color: white;
-        }
-     h3 {
-         font-size: 12px;
-         margin-top: 10px;
-         color: white;
-     p {
-        line-height: 1.6;
-        margin: 5px 0;
-        color: white;
-        }
-
-     .star {
-        color: #ffdd44;
-        font-size: 24px;
-        }
-
-    </style>
+footer {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 14px;
+    opacity: 0.8;
+}
+</style>
 </head>
-<body>
-    <div class="donate-container"> 
-    <h1>Донати</h1>
-    <button class="back-btn" onclick="Back()">Назад</button>
-    <p>
-<h2>Козак<h2>
-    <p>
-1 Місяць - 20 грн
-    <p>
-3 Місяці - 40 грн
-    <p>
-Назавжди - 60 грн
-    </p>
-    <img src="1.jpg" alt="Козак">
-    <p>
-<h2>Сокіл<h2>
-    <p>
-1 Місяць - 30 грн
-    <p>
-3 Місяці - 60 грн
-    <p>
-Назавжди - 90 грн 
-    </p>
-    <img src="2.jpg" alt="Сокіл">
-    <p>
-<h2>Літописець<h2>
-    <p>
-1 Місяць - 50 грн
-    <p>
-3 Місяці - 100 грн
-    <p>
-Назавжди - 150 грн
-    </p>
-    <img src="3.jpg" alt="Літописець">
-    <p>
-<h2>Осавул<h2>
-    <p>
-1 Місяць - 80 грн
-    <p>
-3 Місяці - 140 грн
-    <p>
-Назавжди - 180 грн
-    </p>
-    <img src="4.jpg" alt="Осавул">
-    <p>
-<h2>Отаман<h2>
-    <p>
-1 Місяць - 125 грн
-    <p>
-3 Місяці - 180 грн
-    <p>
-Назавжди - 240 грн      
-    </p>
-    <img src="5.jpg" alt="Отаман">
-    <p>
-<h2>Смурфік<h2>
-    <p>
-1 Місяць - 175 грн
-    <p>
-3 Місяці - 220 грн
-    <p>
-Назавжди - 300 грн
-    </p>
-    <img src="6.jpg" alt="Смурфік">
-    <p>
-<h2>Кейси<h2>
-    <p>
-Донат кейс(з донатом назавжди) - 100 грн
-    <p>
-Кейс з кітами - 50 грн
-    <p>
-Кейс рандом - 25 грн  
-    <p>
-(в цьому кейсі, йдуть різні предмети, а не ключи від кейсів)
-    </p>
-    <footer>
-        <h3>© 2026 VolyaCraft | Всі права захищені<h3>
-    </footer>
-    </div>
-</div>            
-</script>
-}  
 
+<body>
+
+<div class="donate-container">
+
+<h1>💎 Донати</h1>
+
+<div class="button-group">
+    <button class="back-btn" onclick="Back()">Назад</button>
+</div>
+
+<div class="rank">
+    <h2>Козак</h2>
+    <p>1 Місяць — 20 грн</p>
+    <p>3 Місяці — 40 грн</p>
+    <p>Назавжди — 60 грн</p>
+    <img src="1.jpg" alt="Козак">
+</div>
+
+<div class="rank">
+    <h2>Сокіл</h2>
+    <p>1 Місяць — 30 грн</p>
+    <p>3 Місяці — 60 грн</p>
+    <p>Назавжди — 90 грн</p>
+    <img src="2.jpg" alt="Сокіл">
+</div>
+
+<div class="rank">
+    <h2>Літописець</h2>
+    <p>1 Місяць — 50 грн</p>
+    <p>3 Місяці — 100 грн</p>
+    <p>Назавжди — 150 грн</p>
+    <img src="3.jpg" alt="Літописець">
+</div>
+
+<div class="rank">
+    <h2>Осавул</h2>
+    <p>1 Місяць — 80 грн</p>
+    <p>3 Місяці — 140 грн</p>
+    <p>Назавжди — 180 грн</p>
+    <img src="4.jpg" alt="Осавул">
+</div>
+
+<div class="rank">
+    <h2>Отаман</h2>
+    <p>1 Місяць — 125 грн</p>
+    <p>3 Місяці — 180 грн</p>
+    <p>Назавжди — 240 грн</p>
+    <img src="5.jpg" alt="Отаман">
+</div>
+
+<div class="rank">
+    <h2>Смурфік</h2>
+    <p>1 Місяць — 175 грн</p>
+    <p>3 Місяці — 220 грн</p>
+    <p>Назавжди — 300 грн</p>
+    <img src="6.jpg" alt="Смурфік">
+</div>
+
+<div class="rank">
+    <h2>Кейси</h2>
+    <p>Донат кейс (з донатом назавжди) — 100 грн</p>
+    <p>Кейс з кітами — 50 грн</p>
+    <p>Кейс рандом — 25 грн</p>
+    <p><em>(У цьому кейсі йдуть різні предмети, а не ключі від кейсів)</em></p>
+</div>
+
+<footer>
+    © 2026 VolyaCraft | Всі права захищені
+</footer>
+
+</div>
+
+<script>
 function Back() {
     window.location.href = "index.html";
-}  
+}
 </script>
-            
+
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
