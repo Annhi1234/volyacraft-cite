@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Міста України</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            height: 100vh;
+        }
+
+        #sidebar {
+            width: 250px;
+            background: #f4f4f4;
+            border-right: 1px solid #ccc;
+            overflow-y: auto;
+        }
+
+        #sidebar h2 {
+            padding: 15px;
+            margin: 0;
+            background: #eee;
+            text-align: center;
+        }
+
+        #sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        #sidebar li {
+            padding: 12px 15px;
+            cursor: pointer;
+            border-bottom: 1px solid #ddd;
+        }
+
+        #sidebar li:hover {
+            background: #ddd;
+        }
+
+        #sidebar li.active {
+            background: #adc9ef;
+        }
+
+        #content {
+            flex-grow: 1;
+            padding: 20px;
+        }
+
+        #content h3 {
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="sidebar">
+        <h2>Міста</h2>
+        <ul id="cityList"></ul>
+    </div>
+
+    <div id="content">
+        <h3>Виберіть місто зі списку</h3>
+        <div id="cityInfo"></div>
+    </div>
+
+    <script>
+        // Дані міст
+        const cities = [
+            {
+                name: "Київ",
+                info: "Київ — столиця України, найбільше місто країни."
+            },
+            {
+                name: "Львів",
+                info: "Львів — культурний центр на заході України."
+            },
+            {
+                name: "Одеса",
+                info: "Одеса — портове місто на узбережжі Чорного моря."
+            },
+            {
+                name: "Харків",
+                info: "Харків — друге за величиною місто України."
+            }
+        ];
+
+        const cityList = document.getElementById("cityList");
+        const cityInfo = document.getElementById("cityInfo");
+
+        // Створюємо список
+        cities.forEach((city, index) => {
+            const li = document.createElement("li");
+            li.textContent = city.name;
+            li.addEventListener("click", () => {
+                showCityInfo(index);
+                highlightSelected(li);
+            });
+            cityList.appendChild(li);
+        });
+
+        // Показуємо інформацію про місто
+        function showCityInfo(index) {
+            cityInfo.innerHTML = `
+                <h3>${cities[index].name}</h3>
+                <p>${cities[index].info}</p>
+            `;
+        }
+
+        // Підсвітити активне
+        function highlightSelected(selectedLi) {
+            document.querySelectorAll("#sidebar li").forEach(li => {
+                li.classList.remove("active");
+            });
+            selectedLi.classList.add("active");
+        }
+    </script>
+
+</body>
+</html>
