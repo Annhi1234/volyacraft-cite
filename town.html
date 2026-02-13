@@ -108,6 +108,7 @@ h1 {
 <body>
 
 <h1>Міста VolyaCraft</h1>
+<button class="back-btn" onclick="Back()">Назад</button>
 
 <div class="city-container" id="cityContainer"></div>
 
@@ -194,6 +195,9 @@ cities.forEach(city => {
 });
 
 function closeModal() {
+    modal.style.display = "none";
+},
+function Back() {
     modal.style.display = "none";
 }
 </script>
