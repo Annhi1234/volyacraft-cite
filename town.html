@@ -116,24 +116,21 @@ h1 {
     <div class="modal-content">
         <h2 id="modalTitle"></h2>
         <p id="modalDescription"></p>
+        <p id="modalMer"></p>
         <a id="modalMap" target="_blank">
-            <button class="btn btn-map">Розташування міста</button>
+            <button class="btn btn-map">Знайти місто на мапі</button>
         </a>
         <br>
         <button class="btn btn-back" onclick="closeModal()">Назад</button>
     </div>
 </div>
     
-<footer>
-    © 2025 - 2026 VolyaCraft | Всі права захищені
-</footer>
-    
 <script>
 // ТУТ ТИ БУДЕШ ДОДАВАТИ МІСТА
 const cities = [
     {
         name: "Немірів ",
-        description: "",
+        description: "Нове невелике місто, де є два гравця це мер і просто гравець, атмосфера там дружня, більше нічого сказать",
         dynmap: "http://volyacraft.pp.ua:20088/?worldname=world&mapname=flat&zoom=0&x=1016&y=64&z=-60"
         
     },
@@ -145,6 +142,7 @@ const cities = [
     },
     {
         name: "Дніпро",
+        mer: "Мер: you8",
         description: "Місто Дніпро, є одним з найбільших міст на сервері, має багато людей, та декілька рп споруд, люди добрі і зазвичай в онлайні.",
         dynmap: "http://volyacraft.pp.ua:20088/?worldname=world&mapname=flat&zoom=0&x=1016&y=64&z=-60"
     },
@@ -182,6 +180,7 @@ cities.forEach(city => {
     card.onclick = () => {
         document.getElementById("modalTitle").textContent = city.name;
         document.getElementById("modalDescription").textContent = city.description;
+        document.getElementById("modalMer").textContent = city.mer;
         document.getElementById("modalMap").href = city.dynmap;
         modal.style.display = "flex";
     };
