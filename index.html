@@ -104,18 +104,21 @@ button {
     transition: 0.3s ease;
 }
 
-.discord-btn { background: #5865F2; color: white; }
-.discord-btn:hover { background: #4752c4; }
+.discord-btn { background: #160ef0; color: white; }
+.discord-btn:hover { background: #09074a; }
 
-.donate-btn { background: #159e0b; color: white; }
-.donate-btn:hover { background: #106e09; }
+.donate-btn { background: #160ef0; color: white; }
+.donate-btn:hover { background: #09074a; }
 
-.map-btn { background: #ed0909; color: white; }
-.map-btn:hover { background: #7a0707; }
+.map-btn { background: #160ef0; color: white; }
+.map-btn:hover { background: #09074a; }
 
-.disflip-btn { background: #5102d9; color: white; }
-.disflip-btn:hover { background: #320d73; }
+.disflip-btn { background: #160ef0; color: white; }
+.disflip-btn:hover { background: #09074a; }
 
+.town-btn { background: #160ef0; color: white; }
+.town-btn:hover { background: #09074a; }
+    
 footer {
     padding: 15px;
     font-size: 14px;
@@ -155,8 +158,9 @@ footer {
     <div class="button-group">
         <button class="discord-btn" onclick="joinDiscord()">Приєднатись до Discord</button>
         <button class="donate-btn" onclick="Donate()">Донат</button>
-        <button class="disflip-btn" onclick="joinDisflip()">Наша сторінка на Disflip</button>
+        <button class="town-btn" onclick="Town()">Міста</button>
         <button class="map-btn" onclick="Map()">Мапа</button>
+        <button class="disflip-btn" onclick="joinDisflip()">Наша сторінка на Disflip</button>
     </div>
 </div>
 
@@ -185,10 +189,14 @@ function Donate() {
 function Map() {
     window.location.href = "http://volyacraft.pp.ua:20088/";
 }  
+function Town() {
+    window.location.href = "town.html";
+} 
 </script>
 
 </body>
 </html>
+
 
 
 
