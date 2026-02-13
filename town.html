@@ -117,7 +117,7 @@ h1 {
         <h2 id="modalTitle"></h2>
         <p id="modalDescription"></p>
         <a id="modalMap" target="_blank">
-            <button class="btn btn-map">Dynmap</button>
+            <button class="btn btn-map">Розташування міста</button>
         </a>
         <br>
         <button class="btn btn-back" onclick="closeModal()">Назад</button>
@@ -129,14 +129,30 @@ h1 {
 const cities = [
     {
         name: "Дніпро",
-        description: "Місто VolyaCraft з розвиненою інфраструктурою.",
-        dynmap: "https://твій-dynmap-сайт/?worldname=world&mapname=flat&x=0&y=64&z=0"
+        description: "Місто Дніпро, є одним з найбільших міст на сервері, має багато людей, та декілька рп споруд, люди добрі і зазвичай в онлайні.",
+        dynmap: "http://volyacraft.pp.ua:20088/?worldname=world&mapname=flat&zoom=0&x=1016&y=64&z=-60"
     },
     {
-        name: "Львів",
-        description: "Культурний центр сервера.",
-        dynmap: "https://твій-dynmap-сайт/"
+        name: "житомир",
+        description: "Невелике місто, з маєтком, що наразі будується, у місті є тільки мер, але він допомогає всьому серверу, та завжди веселий",
+        dynmap: "http://volyacraft.pp.ua:20088/?worldname=world&mapname=flat&zoom=0&x=1016&y=64&z=-60"
+    },
+    {
+        name: "Полтава",
+        description: "Невелике місто, що зкладається з 1 будинка, мер любе всіх таргетить тому, якщо ви про в пвп вам треба сюди. Місто мале, але є де жити",
+        dynmap: "http://volyacraft.pp.ua:20088/?worldname=world&mapname=flat&zoom=0&x=1016&y=64&z=-60"
+    },
+    {
+        name: "Білогірськ",
+        description: "Мале містечко, з 1 пам'ятником, загалом будинків небагато і гравців також, місто є одним з найбагатшим через свої рп споруди, але ресурсами є й багатші міста",
+        dynmap: "http://volyacraft.pp.ua:20088/?worldname=world&mapname=flat&zoom=0&x=1016&y=64&z=-60"
+    },
+    {
+        name: "Київ",
+        description: "Велике, але закинуте місто, де є 1 - 2 будиночки, в місті лиш 1 мер, нема рп споруд, але є гроші, що тримають місто на плаву",
+        dynmap: "http://volyacraft.pp.ua:20088/?worldname=world&mapname=flat&zoom=0&x=1016&y=64&z=-60"
     }
+    
 ];
 
 const container = document.getElementById("cityContainer");
