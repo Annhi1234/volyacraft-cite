@@ -1,136 +1,166 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Міста VolyaCraft</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Міста VolyaCraft</title>
 
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-    body {
-        font-family: 'Segoe UI', sans-serif;
-        min-height: 100vh;
-        color: white;
-        text-align: center;
-        background: linear-gradient(to top, 
-            #ffaa00 0%, 
-            #ffaa00 15%, 
-            #e6a100 25%, 
-            #cc9900 35%, 
-            #4da6ff 60%, 
-            #0057b7 85%, 
-            #003d7a 100%
-        );
-        background-attachment: fixed;
-    }
+body {
+    font-family: 'Segoe UI', sans-serif;
+    min-height: 100vh;
+    background: linear-gradient(to top, 
+        #ffaa00 0%, 
+        #ffaa00 15%, 
+        #e6a100 25%, 
+        #cc9900 35%, 
+        #4da6ff 60%, 
+        #0057b7 85%, 
+        #003d7a 100%
+    );
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
 
-        #sidebar {
-            width: 250px;
-            background: #f4f4f4;
-            border-right: 1px solid #ccc;
-            overflow-y: auto;
-        }
+h1 {
+    margin-bottom: 30px;
+    color: white;
+}
 
-        #sidebar h2 {
-            padding: 15px;
-            margin: 0;
-            background: #eee;
-            text-align: center;
-        }
+.city-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
 
-        #sidebar ul {
-            list-style: none;
-            padding: 0;
-        }
+.city-card {
+    width: 250px;
+    height: 150px;
+    background: rgba(0,0,0,0.6);
+    border-radius: 15px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
 
-        #sidebar li {
-            padding: 12px 15px;
-            cursor: pointer;
-            border-bottom: 1px solid #ddd;
-        }
+.city-card:hover {
+    transform: scale(1.05);
+    background: rgba(0,0,0,0.8);
+}
 
-        #sidebar li:hover {
-            background: #ddd;
-        }
+/* Модальне вікно */
 
-        #sidebar li.active {
-            background: #adc9ef;
-        }
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    justify-content: center;
+    align-items: center;
+}
 
-        #content {
-            flex-grow: 1;
-            padding: 20px;
-        }
+.modal-content {
+    background: #111;
+    padding: 30px;
+    border-radius: 15px;
+    width: 400px;
+    text-align: center;
+    color: white;
+}
 
-        #content h3 {
-            margin-top: 0;
-        }
-    </style>
+.modal-content h2 {
+    margin-bottom: 15px;
+}
+
+.modal-content p {
+    margin-bottom: 20px;
+}
+
+.btn {
+    padding: 10px 15px;
+    margin: 5px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-back {
+    background: #aa0000;
+    color: white;
+}
+
+.btn-map {
+    background: #0077ff;
+    color: white;
+}
+</style>
 </head>
 <body>
 
-    <div id="sidebar">
-        <h2>Міста</h2>
-        <ul id="cityList"></ul>
+<h1>Міста VolyaCraft</h1>
+
+<div class="city-container" id="cityContainer"></div>
+
+<!-- Модальне вікно -->
+<div class="modal" id="modal">
+    <div class="modal-content">
+        <h2 id="modalTitle"></h2>
+        <p id="modalDescription"></p>
+        <a id="modalMap" target="_blank">
+            <button class="btn btn-map">Dynmap</button>
+        </a>
+        <br>
+        <button class="btn btn-back" onclick="closeModal()">Назад</button>
     </div>
+</div>
 
-    <div id="content">
-        <h3>Виберіть місто зі списку</h3>
-        <div id="cityInfo"></div>
-    </div>
+<script>
+// ТУТ ТИ БУДЕШ ДОДАВАТИ МІСТА
+const cities = [
+    {
+        name: "Дніпро",
+        description: "Місто VolyaCraft з розвиненою інфраструктурою.",
+        dynmap: "https://твій-dynmap-сайт/?worldname=world&mapname=flat&x=0&y=64&z=0"
+    },
+    {
+        name: "Львів",
+        description: "Культурний центр сервера.",
+        dynmap: "https://твій-dynmap-сайт/"
+    }
+];
 
-    <script>
-        // Дані міст
-        const cities = [
-            {
-                name: "Дніпро",
-                info: "."
-            },
-            {
-                name: "Львів",
-                info: "Львів — культурний центр на заході України."
-            },
-            {
-                name: "Одеса",
-                info: "Одеса — портове місто на узбережжі Чорного моря."
-            },
-            {
-                name: "Харків",
-                info: "Харків — друге за величиною місто України."
-            }
-        ];
+const container = document.getElementById("cityContainer");
+const modal = document.getElementById("modal");
 
-        const cityList = document.getElementById("cityList");
-        const cityInfo = document.getElementById("cityInfo");
+cities.forEach(city => {
+    const card = document.createElement("div");
+    card.className = "city-card";
+    card.textContent = city.name;
 
-        // Створюємо список
-        cities.forEach((city, index) => {
-            const li = document.createElement("li");
-            li.textContent = city.name;
-            li.addEventListener("click", () => {
-                showCityInfo(index);
-                highlightSelected(li);
-            });
-            cityList.appendChild(li);
-        });
+    card.onclick = () => {
+        document.getElementById("modalTitle").textContent = city.name;
+        document.getElementById("modalDescription").textContent = city.description;
+        document.getElementById("modalMap").href = city.dynmap;
+        modal.style.display = "flex";
+    };
 
-        // Показуємо інформацію про місто
-        function showCityInfo(index) {
-            cityInfo.innerHTML = `
-                <h3>${cities[index].name}</h3>
-                <p>${cities[index].info}</p>
-            `;
-        }
+    container.appendChild(card);
+});
 
-        // Підсвітити активне
-        function highlightSelected(selectedLi) {
-            document.querySelectorAll("#sidebar li").forEach(li => {
-                li.classList.remove("active");
-            });
-            selectedLi.classList.add("active");
-        }
-    </script>
+function closeModal() {
+    modal.style.display = "none";
+}
+</script>
 
 </body>
 </html>
