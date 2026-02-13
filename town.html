@@ -108,7 +108,6 @@ h1 {
 <body>
 
 <h1>Міста VolyaCraft</h1>
-<button class="back-btn" onclick="Back()">Назад</button>
 
 <div class="city-container" id="cityContainer"></div>
 
@@ -118,6 +117,7 @@ h1 {
         <h2 id="modalTitle"></h2>
         <p id="modalDescription"></p>
         <p id="modalMer"></p>
+        <p id="modalPlayers"></p>
         <p id="modalNation"></p>
         <a id="modalMap" target="_blank">
             <button class="btn btn-map">Знайти місто на мапі</button>
@@ -133,6 +133,7 @@ const cities = [
     {
         name: "Немірів ",
         mer: "Мер: makszik",
+        players: "Містян: 2",
         nation: "Нація: УНР",
         description: "Нове невелике місто, де є два гравця це мер і просто гравець, атмосфера там дружня, більше нічого сказать",
         dynmap: "http://volyacraft.pp.ua:20088/?worldname=world&mapname=flat&zoom=0&x=1016&y=64&z=-60"
@@ -141,6 +142,7 @@ const cities = [
     {
         name: "Луганськ",
         mer: "Мер: kirill9410401",
+        players: "Містянин: 1",
         description: "Невелике місто, що розташувалося на краю України, там будується рп споруда, але там у місті є 1 мер і 1 будинок, загалом у міста є гроші на стримання тому воно не пропаде",
         dynmap: "http://volyacraft.pp.ua:20088/?worldname=world&mapname=flat&zoom=0&x=1016&y=64&z=-60"
             
@@ -148,6 +150,7 @@ const cities = [
     {
         name: "Дніпро",
         mer: "Мер: you8",
+        players: "Містян: 5",
         nation: "Нація: УНР",
         description: "Місто Дніпро, є одним з найбільших міст на сервері, має багато людей, та декілька рп споруд, люди добрі і зазвичай в онлайні.",
         dynmap: "http://volyacraft.pp.ua:20088/?worldname=world&mapname=flat&zoom=0&x=1016&y=64&z=-60"
@@ -155,12 +158,14 @@ const cities = [
     {
         name: "житомир",
         mer: "Мер: CY15",
+        players: "Містян: 2",
         description: "Невелике місто, з маєтком, що наразі будується, у місті є тільки мер, але він допомогає всьому серверу, та завжди веселий",
         dynmap: "http://volyacraft.pp.ua:20088/?worldname=world&mapname=flat&zoom=0&x=1016&y=64&z=-60"
     },
     {
         name: "Полтава",
         mer: "Мер: 2026_Monkey_2026",
+        players: "Містянин: 1",
         nation: "Нація: УНР(столиця нації)",
         description: "Невелике місто, що зкладається з 1 будинка, мер любе всіх таргетить тому, якщо ви про в пвп вам треба сюди. Місто мале, але є де жити",
         dynmap: "http://volyacraft.pp.ua:20088/?worldname=world&mapname=flat&zoom=0&x=1016&y=64&z=-60"
@@ -168,6 +173,7 @@ const cities = [
     {
         name: "Білогірськ",
         mer: "Мер: wertychku",
+        players: "Містянин: 1",
         description: "Мале містечко, з 1 пам'ятником, загалом будинків небагато і гравців також, місто є одним з найбагатшим через свої рп споруди, але ресурсами є й багатші міста",
         dynmap: "http://volyacraft.pp.ua:20088/?worldname=world&mapname=flat&zoom=0&x=1016&y=64&z=-60"
     }
@@ -186,6 +192,7 @@ cities.forEach(city => {
         document.getElementById("modalTitle").textContent = city.name;
         document.getElementById("modalDescription").textContent = city.description;
         document.getElementById("modalMer").textContent = city.mer;
+         document.getElementById("modalPlayers").textContent = city.players;
         document.getElementById("modalNation").textContent = city.nation;
         document.getElementById("modalMap").href = city.dynmap;
         modal.style.display = "flex";
@@ -196,9 +203,6 @@ cities.forEach(city => {
 
 function closeModal() {
     modal.style.display = "none";
-},
-function Back() {
-    window.location.href = "index.html";
 }
 </script>
 
