@@ -204,7 +204,7 @@ cities.forEach(city => {
         document.getElementById("modalMer").textContent = city.mer;
         document.getElementById("modalPlayers").textContent = city.players;
         document.getElementById("modalNation").textContent = city.nation;
-        document.getElementById("modalDS").textContent = city.ds;
+        document.getElementById("modalDS").href = city.ds;
         document.getElementById("modalMap").href = city.dynmap;
         modal.style.display = "flex";
     };
