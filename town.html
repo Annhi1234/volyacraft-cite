@@ -12,7 +12,7 @@ body {
     font-family: 'Segoe UI', 'Inter', system-ui, sans-serif;
     min-height: 100vh;
     color: white;
-    background: linear-gradient(145deg, 
+    background: linear-gradient(to top, 
         #ffaa00 0%, 
         #ffaa00 15%, 
         #e6a100 25%, 
@@ -23,7 +23,6 @@ body {
     );
     background-attachment: fixed;
     position: relative;
-    padding: 20px;
 }
 
 body::before {
@@ -47,68 +46,60 @@ body::before {
 }
 
 .btn-home {
-    background: rgba(0, 0, 0, 0.25);
-    backdrop-filter: blur(12px);
+    background: rgba(0, 0, 0, 0.2);
     color: white;
-    padding: 12px 24px;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    border-radius: 50px;
+    padding: 10px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 40px;
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
     display: flex;
     align-items: center;
-    gap: 10px;
-    box-shadow: 0 10px 20px -8px rgba(0, 0, 0, 0.5);
+    gap: 8px;
 }
 
 .btn-home:hover {
-    background: rgba(0, 0, 0, 0.35);
-    border-color: rgba(255, 255, 255, 0.6);
-    transform: translateY(-4px);
-    box-shadow: 0 20px 30px -8px rgba(255, 255, 255, 0.2);
+    background: rgba(0, 0, 0, 0.3);
+    transform: scale(1.03);
 }
 
 .btn-home span {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
 }
 
 h1 {
     font-size: 4rem;
-    margin: 80px 0 20px;
+    margin: 70px 0 20px;
     text-align: center;
-    text-shadow: 3px 5px 15px rgba(0, 0, 0, 0.5);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     font-weight: 800;
     letter-spacing: -1px;
-    background: linear-gradient(135deg, #ffffff, #f5f5f5);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: white;
     position: relative;
     z-index: 1;
 }
 
 /* Контейнер для міст (вертикальний список) */
 .city-container {
-    max-width: 800px;
-    margin: 40px auto 50px;
+    max-width: 700px;
+    margin: 20px auto 40px;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 12px;
     padding: 0 20px;
     position: relative;
     z-index: 1;
 }
 
 .city-card {
-    background: rgba(0, 0, 0, 0.25);
-    backdrop-filter: blur(12px);
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    border-radius: 60px;
-    padding: 25px 35px;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50px;
+    padding: 20px 30px;
     color: white;
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -116,30 +107,22 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.5);
-    position: relative;
-    overflow: hidden;
 }
 
 .city-card::after {
     content: '→';
-    font-size: 2rem;
+    font-size: 1.8rem;
     color: white;
-    opacity: 0;
-    transform: translateX(-10px);
-    transition: all 0.3s ease;
+    opacity: 0.5;
 }
 
 .city-card:hover {
-    transform: translateY(-5px) scale(1.02);
-    background: rgba(0, 0, 0, 0.35);
-    border-color: rgba(255, 255, 255, 0.5);
-    box-shadow: 0 20px 35px -8px rgba(255, 255, 255, 0.2);
+    transform: scale(1.02);
+    background: rgba(0, 0, 0, 0.3);
 }
 
 .city-card:hover::after {
     opacity: 1;
-    transform: translateX(0);
 }
 
 /* Модальне вікно */
@@ -147,49 +130,42 @@ h1 {
     display: none;
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(8px);
+    background: rgba(0, 0, 0, 0.5);
     justify-content: center;
     align-items: center;
     z-index: 1000;
-    animation: fadeIn 0.3s ease;
 }
 
 .modal-content {
-    background: rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(20px);
-    padding: 40px;
-    border-radius: 40px;
-    width: 500px;
+    background: rgba(0, 0, 0, 0.25);
+    padding: 30px;
+    border-radius: 30px;
+    width: 450px;
     max-width: 90%;
     text-align: center;
     color: white;
-    box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.8);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    animation: scaleIn 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .modal-content h2 {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     color: #ffaa00;
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     font-weight: 700;
-    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
 }
 
 .modal-content p {
-    margin-bottom: 15px;
-    line-height: 1.6;
-    font-size: 1.1rem;
-    color: rgba(255,255,255,0.95);
+    margin-bottom: 12px;
+    line-height: 1.5;
+    font-size: 1rem;
 }
 
 .modal-content p:first-of-type {
-    margin-top: 15px;
-    background: rgba(0, 0, 0, 0.3);
-    padding: 20px;
-    border-radius: 20px;
-    border-left: 4px solid #ffaa00;
+    margin-top: 10px;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    border-radius: 15px;
     text-align: left;
 }
 
@@ -197,84 +173,56 @@ h1 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px;
-    margin: 30px 0 20px;
+    gap: 10px;
+    margin: 20px 0 15px;
 }
 
 .btn {
-    padding: 14px 28px;
+    padding: 12px 24px;
     border: none;
     border-radius: 50px;
     cursor: pointer;
     font-weight: 600;
-    font-size: 1.1rem;
+    font-size: 1rem;
     transition: all 0.3s ease;
-    width: 260px;
+    width: 240px;
     max-width: 100%;
-    background: rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(10px);
+    background: rgba(0, 0, 0, 0.2);
     color: white;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    box-shadow: 0 10px 20px -8px rgba(0, 0, 0, 0.5);
-    position: relative;
-    overflow: hidden;
-}
-
-.btn::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.15);
-    transform: translate(-50%, -50%);
-    transition: width 0.5s, height 0.5s;
-    z-index: 0;
-}
-
-.btn:hover::before {
-    width: 300px;
-    height: 300px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .btn:hover {
-    transform: translateY(-4px);
-    border-color: rgba(255, 255, 255, 0.6);
-    box-shadow: 0 20px 30px -8px rgba(255, 255, 255, 0.2);
+    transform: scale(1.03);
+    background: rgba(0, 0, 0, 0.3);
 }
 
-.btn-map { border-left: 4px solid #03A9F4; }
-.btn-ds { border-left: 4px solid #5865F2; }
-.btn-back { border-left: 4px solid #ff6b6b; }
+.btn-map { border-left: 3px solid #03A9F4; }
+.btn-ds { border-left: 3px solid #5865F2; }
+.btn-back { border-left: 3px solid #ff6b6b; }
 
-/* Анімації */
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-@keyframes scaleIn {
-    from {
-        opacity: 0;
-        transform: scale(0.9);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
+footer {
+    padding: 15px;
+    font-size: 0.95rem;
+    opacity: 0.9;
+    background: rgba(0, 0, 0, 0.15);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    z-index: 1;
 }
 
 /* Адаптивність */
 @media (max-width: 768px) {
     h1 {
-        font-size: 2.8rem;
+        font-size: 3rem;
     }
     
     .city-card {
-        font-size: 1.3rem;
-        padding: 20px 25px;
+        font-size: 1.2rem;
+        padding: 15px 25px;
     }
 }
 
@@ -284,23 +232,26 @@ h1 {
         left: 10px;
     }
     
-    .btn-home {
-        padding: 8px 16px;
-        font-size: 0.9rem;
-    }
-    
     h1 {
         font-size: 2.2rem;
-        margin-top: 70px;
+        margin-top: 60px;
     }
     
     .city-card {
-        font-size: 1.1rem;
-        padding: 15px 20px;
+        font-size: 1rem;
+        padding: 12px 20px;
+    }
+    
+    .city-card::after {
+        font-size: 1.5rem;
     }
     
     .modal-content {
-        padding: 25px;
+        padding: 20px;
+    }
+    
+    .modal-content h2 {
+        font-size: 1.8rem;
     }
 }
 </style>
@@ -330,6 +281,10 @@ h1 {
         <button class="btn btn-back" onclick="closeModal()">Назад</button>
     </div>
 </div>
+
+<footer>
+    © 2025 - 2026 VolyaCraft | Всі права захищені
+</footer>
 
 <script>
 const cities = [
