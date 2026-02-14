@@ -103,7 +103,11 @@ h1 {
     background: #160ef0; 
     color: white; 
 }
-    
+
+.map-ds {
+    background: #160ef0; 
+    color: white; 
+}
 </style>
 </head>
 <body>
@@ -123,13 +127,16 @@ h1 {
         <a id="modalMap" target="_blank">
             <button class="btn btn-map">Знайти місто на мапі</button>
         </a>
+        <a id="modalDS" target="_blank">
+            <button class="btn btn-ds">Діскорд міста</button>
+        </a>
         <br>
         <button class="btn btn-back" onclick="closeModal()">Назад</button>
     </div>
 </div>
     
 <script>
-// ТУТ ТИ БУДЕШ ДОДАВАТИ МІСТА
+
 const cities = [
     {
         name: "Немірів ",
@@ -154,6 +161,7 @@ const cities = [
         players: "Містян: 5",
         nation: "Нація: УНР",
         description: "Місто Дніпро, є одним з найбільших міст на сервері, має багато людей, та декілька рп споруд, люди добрі і зазвичай в онлайні.",
+        ds: "https://discord.gg/mFdept9h4v",
         dynmap: "http://volyacraft.pp.ua:20088/?worldname=world&mapname=flat&zoom=0&x=1016&y=64&z=-60"
     },
     {
@@ -193,9 +201,10 @@ cities.forEach(city => {
         document.getElementById("modalTitle").textContent = city.name;
         document.getElementById("modalDescription").textContent = city.description;
         document.getElementById("modalMer").textContent = city.mer;
-         document.getElementById("modalPlayers").textContent = city.players;
+        document.getElementById("modalPlayers").textContent = city.players;
         document.getElementById("modalNation").textContent = city.nation;
         document.getElementById("modalMap").href = city.dynmap;
+        document.getElementById("modalDS").textContent = city.ds;
         modal.style.display = "flex";
     };
 
