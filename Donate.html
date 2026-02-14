@@ -3,132 +3,364 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VolyaCraft | Donate</title>
+<title>VolyaCraft | Донат</title>
 
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-    font-family: 'Segoe UI', sans-serif;
+    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
     min-height: 100vh;
     color: white;
-    text-align: center;
-    background: linear-gradient(to top, 
-        #ffaa00 0%, 
-        #ffaa00 15%, 
-        #e6a100 25%, 
-        #cc9900 35%, 
-        #4da6ff 60%, 
-        #0057b7 85%, 
-        #003d7a 100%
-    );
+    background: linear-gradient(145deg, #0b1420 0%, #1a2a3a 100%);
     background-attachment: fixed;
+    position: relative;
+    line-height: 1.5;
+    padding: 20px;
 }
 
+/* Декоративні ефекти (як на головній) */
+body::before {
+    content: '';
+    position: fixed;
+    top: -50%;
+    right: -20%;
+    width: 80%;
+    height: 80%;
+    background: radial-gradient(circle, rgba(255,170,0,0.15) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+body::after {
+    content: '';
+    position: fixed;
+    bottom: -30%;
+    left: -10%;
+    width: 70%;
+    height: 70%;
+    background: radial-gradient(circle, rgba(0,87,183,0.2) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Головний контейнер */
 .donate-container {
-    background: rgba(0, 0, 0, 0.25);
-    width: 90%;
-    max-width: 1100px;
-    margin: 47px auto;
-    padding: 30px;
-    border-radius: 15px;
-    backdrop-filter: blur(8px);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    background: rgba(10, 20, 30, 0.6);
+    backdrop-filter: blur(12px);
+    width: 95%;
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 40px;
+    border-radius: 40px;
+    box-shadow: 0 20px 40px -15px rgba(0,0,0,0.7);
+    border: 1px solid rgba(255, 170, 0, 0.2);
+    animation: fadeIn 0.8s ease;
 }
 
 h1 {
     text-align: center;
+    font-size: 4rem;
     margin-bottom: 20px;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    background: linear-gradient(135deg, #ffaa00, #ffdd88);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 800;
+    letter-spacing: -1px;
+    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.3));
 }
 
-.rank {
-    margin-bottom: 40px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid rgba(255,255,255,0.15);
+/* Декоративна лінія */
+.decor-line {
+    width: 150px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #ffaa00, transparent);
+    margin: 20px auto 40px;
 }
 
-.rank img {
-    max-width: 425px;
-    display: block;
-    margin: 35px auto;
-    border-radius: 13px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-}
-
-.rank h2 {
-    margin-bottom: 15px;
-    font-size: 2rem;
-    font-weight: 700;
-    text-shadow: 0 2px 3px rgba(0,0,0,0.4);
-}
-
-.rank p {
-    margin-bottom: 15px;
-    font-weight: bold;
-    font-size: 1.2rem;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
-}
-
+/* Група кнопок */
 .button-group {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 20px;
-    margin-bottom: 30px;
-    margin-top: 10px;
+    margin: 30px 0 40px;
     flex-wrap: wrap;
 }
 
 button {
-    padding: 14px 28px;
-    font-size: 18px;
+    padding: 16px 32px;
+    font-size: 1.2rem;
+    font-weight: 600;
     border: none;
-    font-weight: bold;
-    border-radius: 8px;
+    border-radius: 50px;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-}
-
-.back-btn {
-    background: #0d26e0;
+    background: rgba(20, 30, 45, 0.8);
+    backdrop-filter: blur(10px);
     color: white;
+    border: 1px solid rgba(255, 170, 0, 0.5);
+    box-shadow: 0 8px 15px -5px rgba(0,0,0,0.5);
+    letter-spacing: 0.5px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-width: 180px;
+    position: relative;
+    overflow: hidden;
 }
 
-.back-btn:hover {
-    background: #08135e;
-    transform: scale(1.05);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 170, 0, 0.2);
+    transform: translate(-50%, -50%);
+    transition: width 0.5s, height 0.5s;
+    z-index: -1;
 }
 
-.buy-btn {
-    background: #e6b800;
-    color: white;
+button:hover {
+    transform: translateY(-4px);
+    background: rgba(40, 55, 75, 0.9);
+    border-color: #ffaa00;
+    box-shadow: 0 15px 25px -8px #ffaa0080;
 }
 
-.buy-btn:hover {
-    background: #cc9900;
-    transform: scale(1.05);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+button:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+/* Стилі для карток рангів */
+.rank {
+    margin-bottom: 60px;
+    padding: 30px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 30px;
+    border: 1px solid rgba(255, 170, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.rank:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 30px -10px #ffaa0040;
+    border-color: rgba(255, 170, 0, 0.4);
+}
+
+.rank h2 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #ffaa00;
+    text-shadow: 0 2px 10px rgba(255,170,0,0.3);
+    letter-spacing: -0.5px;
+}
+
+.rank p {
+    margin-bottom: 12px;
+    font-size: 1.3rem;
+    color: rgba(255,255,255,0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.rank p strong {
+    color: #ffaa00;
+    font-weight: 700;
+    background: rgba(255,170,0,0.1);
+    padding: 5px 15px;
+    border-radius: 30px;
+}
+
+.rank img {
+    max-width: 100%;
+    width: 500px;
+    display: block;
+    margin: 30px auto;
+    border-radius: 20px;
+    box-shadow: 0 15px 30px -10px rgba(0,0,0,0.6);
+    border: 3px solid rgba(255, 170, 0, 0.2);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.rank img:hover {
+    transform: scale(1.02);
+    border-color: #ffaa00;
+}
+
+/* Спеціальний стиль для останнього блоку (Кейси) */
+.rank:last-child {
+    background: rgba(255, 170, 0, 0.05);
+    border: 2px dashed #ffaa00;
+}
+
+.rank:last-child p {
+    font-size: 1.4rem;
+    justify-content: flex-start;
+    padding-left: 20px;
+}
+
+.rank:last-child p em {
+    color: #ffaa00;
+    font-style: italic;
+    opacity: 1;
+}
+
+/* Ціни в блоці кейсів */
+.price-tag {
+    background: rgba(255,170,0,0.15);
+    padding: 8px 20px;
+    border-radius: 40px;
+    color: #ffaa00;
+    font-weight: 700;
+    margin-left: 10px;
 }
 
 footer {
     text-align: center;
-    margin-top: 30px;
-    font-size: 14px;
-    opacity: 0.9;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    margin-top: 50px;
+    padding: 20px;
+    font-size: 1rem;
+    opacity: 0.8;
+    border-top: 1px solid rgba(255, 170, 0, 0.2);
+    color: rgba(255,255,255,0.7);
 }
 
-/* Спеціально для блоку Кейси - читабельність */
-.rank:last-child p {
-    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+/* Анімації */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-.rank:last-child p em {
-    opacity: 0.95;
-    font-style: italic;
+/* Адаптивність */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.8rem;
+    }
+    
+    .donate-container {
+        padding: 25px;
+    }
+    
+    .rank h2 {
+        font-size: 2.2rem;
+    }
+    
+    .rank p {
+        font-size: 1.1rem;
+        flex-wrap: wrap;
+    }
+    
+    button {
+        padding: 14px 24px;
+        font-size: 1rem;
+        min-width: 150px;
+    }
+    
+    .rank:last-child p {
+        font-size: 1.2rem;
+        padding-left: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 2.2rem;
+    }
+    
+    .donate-container {
+        padding: 20px;
+    }
+    
+    .rank {
+        padding: 20px;
+    }
+    
+    .rank h2 {
+        font-size: 1.8rem;
+    }
+    
+    .rank p {
+        font-size: 1rem;
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .button-group {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    button {
+        width: 100%;
+        max-width: 280px;
+    }
+    
+    .rank:last-child p {
+        font-size: 1rem;
+        text-align: left;
+    }
+}
+
+/* Додаткові ефекти */
+.glow-text {
+    text-shadow: 0 0 10px #ffaa00, 0 0 20px #ffaa00;
+}
+
+.price-highlight {
+    color: #ffaa00;
+    font-weight: 700;
+    font-size: 1.4rem;
+}
+
+/* Іконки для кнопок */
+.back-btn::before {
+    content: '←';
+    margin-right: 8px;
+    font-size: 1.3rem;
+}
+
+.buy-btn::after {
+    content: '→';
+    margin-left: 8px;
+    font-size: 1.3rem;
+}
+
+/* Стиль для списку цін */
+.price-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.price-item {
+    background: rgba(255,170,0,0.1);
+    border-radius: 40px;
+    padding: 12px 25px;
+    border: 1px solid rgba(255,170,0,0.3);
 }
 </style>
 </head>
@@ -137,67 +369,87 @@ footer {
 
 <div class="donate-container">
 
-<h1>VolyaCraft Донати</h1>
+<h1>VolyaCraft Донат</h1>
+<div class="decor-line"></div>
 
 <div class="button-group">
     <button class="back-btn" onclick="Back()">Назад</button>
     <button class="buy-btn" onclick="Buy()">Купити</button>
 </div>
 
+<!-- Ранг Козак -->
 <div class="rank">
-    <h2>Козак</h2>
-    <p><strong>1 Місяць</strong> — 20 грн</p>
-    <p><strong>3 Місяці</strong> — 40 грн</p>
-    <p><strong>Назавжди</strong> — 60 грн</p>
-    <img src="1.jpg" alt="Козак">
+    <h2>⚡ Козак</h2>
+    <div class="price-list">
+        <span class="price-item"><strong>1 місяць</strong> — 20 грн</span>
+        <span class="price-item"><strong>3 місяці</strong> — 40 грн</span>
+        <span class="price-item"><strong>Назавжди</strong> — 60 грн</span>
+    </div>
+    <img src="1.jpg" alt="Козак" onerror="this.src='https://via.placeholder.com/500x300?text=Козак'">
 </div>
 
+<!-- Ранг Сокіл -->
 <div class="rank">
-    <h2>Сокіл</h2>
-    <p><strong>1 Місяць</strong> — 30 грн</p>
-    <p><strong>3 Місяці</strong> — 60 грн</p>
-    <p><strong>Назавжди</strong> — 90 грн</p>
-    <img src="2.jpg" alt="Сокіл">
+    <h2>🦅 Сокіл</h2>
+    <div class="price-list">
+        <span class="price-item"><strong>1 місяць</strong> — 30 грн</span>
+        <span class="price-item"><strong>3 місяці</strong> — 60 грн</span>
+        <span class="price-item"><strong>Назавжди</strong> — 90 грн</span>
+    </div>
+    <img src="2.jpg" alt="Сокіл" onerror="this.src='https://via.placeholder.com/500x300?text=Сокіл'">
 </div>
 
+<!-- Ранг Літописець -->
 <div class="rank">
-    <h2>Літописець</h2>
-    <p><strong>1 Місяць</strong> — 50 грн</p>
-    <p><strong>3 Місяці</strong> — 100 грн</p>
-    <p><strong>Назавжди</strong> — 150 грн</p>
-    <img src="3.jpg" alt="Літописець">
+    <h2>📜 Літописець</h2>
+    <div class="price-list">
+        <span class="price-item"><strong>1 місяць</strong> — 50 грн</span>
+        <span class="price-item"><strong>3 місяці</strong> — 100 грн</span>
+        <span class="price-item"><strong>Назавжди</strong> — 150 грн</span>
+    </div>
+    <img src="3.jpg" alt="Літописець" onerror="this.src='https://via.placeholder.com/500x300?text=Літописець'">
 </div>
 
+<!-- Ранг Осавул -->
 <div class="rank">
-    <h2>Осавул</h2>
-    <p><strong>1 Місяць</strong> — 80 грн</p>
-    <p><strong>3 Місяці</strong> — 140 грн</p>
-    <p><strong>Назавжди</strong> — 180 грн</p>
-    <img src="4.jpg" alt="Осавул">
+    <h2>⚔️ Осавул</h2>
+    <div class="price-list">
+        <span class="price-item"><strong>1 місяць</strong> — 80 грн</span>
+        <span class="price-item"><strong>3 місяці</strong> — 140 грн</span>
+        <span class="price-item"><strong>Назавжди</strong> — 180 грн</span>
+    </div>
+    <img src="4.jpg" alt="Осавул" onerror="this.src='https://via.placeholder.com/500x300?text=Осавул'">
 </div>
 
+<!-- Ранг Отаман -->
 <div class="rank">
-    <h2>Отаман</h2>
-    <p><strong>1 Місяць</strong> — 125 грн</p>
-    <p><strong>3 Місяці</strong> — 180 грн</p>
-    <p><strong>Назавжди</strong> — 240 грн</p>
-    <img src="5.jpg" alt="Отаман">
+    <h2>👑 Отаман</h2>
+    <div class="price-list">
+        <span class="price-item"><strong>1 місяць</strong> — 125 грн</span>
+        <span class="price-item"><strong>3 місяці</strong> — 180 грн</span>
+        <span class="price-item"><strong>Назавжди</strong> — 240 грн</span>
+    </div>
+    <img src="5.jpg" alt="Отаман" onerror="this.src='https://via.placeholder.com/500x300?text=Отаман'">
 </div>
 
+<!-- Ранг Смурфік -->
 <div class="rank">
-    <h2>Смурфік</h2>
-    <p><strong>1 Місяць</strong> — 175 грн</p>
-    <p><strong>3 Місяці</strong> — 220 грн</p>
-    <p><strong>Назавжди</strong> — 300 грн</p>
-    <img src="6.jpg" alt="Смурфік">
+    <h2>🧚 Смурфік</h2>
+    <div class="price-list">
+        <span class="price-item"><strong>1 місяць</strong> — 175 грн</span>
+        <span class="price-item"><strong>3 місяці</strong> — 220 грн</span>
+        <span class="price-item"><strong>Назавжди</strong> — 300 грн</span>
+    </div>
+    <img src="6.jpg" alt="Смурфік" onerror="this.src='https://via.placeholder.com/500x300?text=Смурфік'">
 </div>
 
+<!-- Кейси -->
 <div class="rank">
-    <h2>Кейси</h2>
-    <p>Донат кейс (з донатом назавжди) — 100 грн</p>
-    <p>Кейс з кітами — 50 грн</p>
-    <p>Кейс рандом — 25 грн</p>
-    <p><em>(У цьому кейсі йдуть різні предмети, а не ключі від кейсів)</em></p>
+    <h2>🎁 Кейси</h2>
+    <p><span class="price-tag">100 грн</span> Донат кейс (з донатом назавжди)</p>
+    <p><span class="price-tag">50 грн</span> Кейс з кітами</p>
+    <p><span class="price-tag">25 грн</span> Кейс рандом</p>
+    <p><em>✧ У цьому кейсі йдуть різні предмети, а не ключі від кейсів</em></p>
 </div>
     
 <div class="button-group">
@@ -207,6 +459,8 @@ footer {
     
 <footer>
     © 2025 - 2026 VolyaCraft | Всі права захищені
+    <br>
+    <span style="font-size: 0.9rem; opacity: 0.6;">Підтримай сервер</span>
 </footer>
 
 </div>
@@ -218,14 +472,25 @@ function Back() {
 function Buy() {
     window.location.href = "buy.html";
 }
+
+// Додаємо плавне з'явлення елементів
+document.addEventListener('DOMContentLoaded', function() {
+    const elements = document.querySelectorAll('.rank, h1, .button-group');
+    elements.forEach((el, index) => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        el.style.transitionDelay = (index * 0.1) + 's';
+    });
+    
+    setTimeout(() => {
+        elements.forEach(el => {
+            el.style.opacity = '1';
+            el.style.transform = 'translateY(0)';
+        });
+    }, 100);
+});
 </script>
 
 </body>
 </html>
-
-
-
-
-
-
-
