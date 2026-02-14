@@ -106,12 +106,14 @@ h1 {
     color: #ddd;
 }
 
+/* Контейнер для кнопок - вертикальне розташування */
 .button-group {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-    margin: 25px 0 15px;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    margin: 25px 0 20px;
+    width: 100%;
 }
 
 .btn {
@@ -120,36 +122,46 @@ h1 {
     border-radius: 8px;
     cursor: pointer;
     font-weight: bold;
-    font-size: 14px;
+    font-size: 15px;
     transition: 0.2s;
-    min-width: 140px;
+    width: 220px; /* Фіксована ширина для всіх кнопок */
+    max-width: 100%;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
 }
 
-.btn-back {
-    background: #aa0000;
-    color: white;
-}
-
-.btn-back:hover {
-    background: #cc0000;
-}
-
+/* Кольори кнопок */
 .btn-map {
-    background: #160ef0; 
+    background: #0284c7; /* Синій (приємніший за попередній) */
     color: white; 
 }
 
 .btn-map:hover {
-    background: #2a1fff;
+    background: #0369a1;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px rgba(0,0,0,0.4);
 }
 
 .btn-ds {
-    background: #5865F2; 
+    background: #6366f1; /* Індиго (м'якший за стандартний Discord) */
     color: white; 
 }
 
 .btn-ds:hover {
-    background: #6d7af5;
+    background: #4f52e0;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px rgba(0,0,0,0.4);
+}
+
+.btn-back {
+    background: #b91c1c; /* Темно-червоний */
+    color: white;
+    margin-top: 5px;
+}
+
+.btn-back:hover {
+    background: #991b1b;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px rgba(0,0,0,0.4);
 }
 
 /* Адаптація для малих екранів */
@@ -158,7 +170,7 @@ h1 {
         padding: 20px;
     }
     .btn {
-        min-width: 120px;
+        width: 180px;
         padding: 10px 15px;
     }
 }
@@ -181,6 +193,7 @@ h1 {
         <p id="modalNation"></p>
         
         <div class="button-group" id="modalButtons">
+            <!-- Кнопки будуть додаватися сюди динамічно одна під одною -->
         </div>
         
         <button class="btn btn-back" onclick="closeModal()">Назад</button>
@@ -196,15 +209,15 @@ const cities = [
         players: "Містян: 2",
         nation: "Нація: УНР",
         description: "Нове невелике місто, де є два гравця це мер і просто гравець, атмосфера там дружня, більше нічого сказать",
-        dynmap: "http://volyacraft.pp.ua:20088/?worldname=world&mapname=flat&zoom=0&x=1016&y=64&z=-60"
-        // Без ds - кнопка Discord не з'явиться
+        dynmap: "http://volyacraft.pp.ua:20088/"
+        // Без ds
     },
     {
         name: "Луганськ",
         mer: "Мер: kirill9410401",
         players: "Містянин: 1",
         description: "Невелике місто, що розташувалося на краю України, там будується рп споруда, але там у місті є 1 мер і 1 будинок, загалом у міста є гроші на стримання тому воно не пропаде",
-        dynmap: "http://volyacraft.pp.ua:20088/?worldname=world&mapname=flat&zoom=0&x=1016&y=64&z=-60"
+        dynmap: "http://volyacraft.pp.ua:20088/"
         // Без ds
     },
     {
@@ -214,23 +227,23 @@ const cities = [
         nation: "Нація: УНР",
         description: "Місто Дніпро, є одним з найбільших міст на сервері, має багато людей, та декілька рп споруд, люди добрі і зазвичай в онлайні.",
         ds: "https://discord.gg/mFdept9h4v",
-        dynmap: "http://volyacraft.pp.ua:20088/?worldname=world&mapname=flat&zoom=0&x=1016&y=64&z=-60"
+        dynmap: "http://volyacraft.pp.ua:20088/"
     },
     {
         name: "Житомир",
         mer: "Мер: CY15",
         players: "Містян: 2",
         description: "Невелике місто, з маєтком, що наразі будується, у місті є тільки мер, але він допомогає всьому серверу, та завжди веселий",
-        dynmap: "http://volyacraft.pp.ua:20088/?worldname=world&mapname=flat&zoom=0&x=1016&y=64&z=-60"
+        dynmap: "http://volyacraft.pp.ua:20088/"
         // Без ds
     },
     {
         name: "Полтава",
         mer: "Мер: 2026_Monkey_2026",
         players: "Містянин: 1",
-        nation: "Нація: УНР(столиця нації)",
+        nation: "Нація: УНР (столиця нації)",
         description: "Невелике місто, що зкладається з 1 будинка, мер любе всіх таргетить тому, якщо ви про в пвп вам треба сюди. Місто мале, але є де жити",
-        dynmap: "http://volyacraft.pp.ua:20088/?worldname=world&mapname=flat&zoom=0&x=1016&y=64&z=-60"
+        dynmap: "http://volyacraft.pp.ua:20088/"
         // Без ds
     },
     {
@@ -238,7 +251,7 @@ const cities = [
         mer: "Мер: wertychku",
         players: "Містянин: 1",
         description: "Мале містечко, з 1 пам'ятником, загалом будинків небагато і гравців також, місто є одним з найбагатшим через свої рп споруди, але ресурсами є й багатші міста",
-        dynmap: "http://volyacraft.pp.ua:20088/?worldname=world&mapname=flat&zoom=0&x=1016&y=64&z=-60"
+        dynmap: "http://volyacraft.pp.ua:20088/"
         // Без ds
     }
 ];
@@ -252,7 +265,7 @@ const modalPlayers = document.getElementById("modalPlayers");
 const modalNation = document.getElementById("modalNation");
 const modalButtons = document.getElementById("modalButtons");
 
-// Функція для очищення та створення кнопок в модальному вікні
+// Функція для заповнення модального вікна
 function fillModal(city) {
     modalTitle.textContent = city.name;
     modalDescription.textContent = city.description || 'Опис відсутній';
@@ -263,21 +276,21 @@ function fillModal(city) {
     // Очищуємо контейнер з кнопками
     modalButtons.innerHTML = '';
     
-    // Кнопка для мапи є завжди (бо dynmap є в кожного міста)
+    // Кнопка для мапи є завжди
     if (city.dynmap) {
         const mapBtn = document.createElement('a');
         mapBtn.href = city.dynmap;
         mapBtn.target = '_blank';
-        mapBtn.innerHTML = '<button class="btn btn-map">Знайти місто на мапі</button>';
+        mapBtn.innerHTML = '<button class="btn btn-map">🗺️ Знайти місто на мапі</button>';
         modalButtons.appendChild(mapBtn);
     }
     
-    // Кнопка для Discord — додаємо ТІЛЬКИ якщо є посилання ds
+    // Кнопка для Discord — тільки якщо є посилання
     if (city.ds) {
         const dsBtn = document.createElement('a');
         dsBtn.href = city.ds;
         dsBtn.target = '_blank';
-        dsBtn.innerHTML = '<button class="btn btn-ds">Діскорд міста</button>';
+        dsBtn.innerHTML = '<button class="btn btn-ds">💬 Діскорд міста</button>';
         modalButtons.appendChild(dsBtn);
     }
 }
