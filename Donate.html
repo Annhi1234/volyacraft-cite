@@ -198,4 +198,231 @@ button:hover {
 }
 
 .price-tag {
-    background: rgba(255, 
+    background: rgba(255, 170, 0, 0.2);
+    padding: 8px 20px;
+    border-radius: 40px;
+    color: #ffaa00;
+    font-weight: 700;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+footer {
+    margin-top: 50px;
+    padding: 25px;
+    font-size: 1rem;
+    opacity: 0.9;
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(5px);
+    border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Анімації */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Адаптивність */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.8rem;
+    }
+    
+    .donate-container {
+        padding: 25px;
+    }
+    
+    .rank h2 {
+        font-size: 2.2rem;
+    }
+    
+    .price-item {
+        font-size: 1rem;
+        padding: 10px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 2.2rem;
+    }
+    
+    .donate-container {
+        padding: 20px;
+    }
+    
+    .rank {
+        padding: 20px;
+    }
+    
+    .rank h2 {
+        font-size: 1.8rem;
+    }
+    
+    .button-group {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    button {
+        width: 100%;
+        max-width: 280px;
+    }
+    
+    .rank:last-child p {
+        font-size: 1.1rem;
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+/* Декоративні елементи */
+.decor-dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background: white;
+    border-radius: 50%;
+    margin: 0 8px;
+    opacity: 0.5;
+}
+</style>
+</head>
+
+<body>
+
+<div class="donate-container">
+
+<h1>VolyaCraft Донат</h1>
+
+<div class="button-group">
+    <button class="back-btn" onclick="Back()">← Назад</button>
+    <button class="buy-btn" onclick="Buy()">Купити →</button>
+</div>
+
+<!-- Ранг Козак -->
+<div class="rank">
+    <h2>⚡ Козак</h2>
+    <div class="price-list">
+        <span class="price-item"><strong>1 місяць</strong> — 20 грн</span>
+        <span class="price-item"><strong>3 місяці</strong> — 40 грн</span>
+        <span class="price-item"><strong>Назавжди</strong> — 60 грн</span>
+    </div>
+    <img src="1.jpg" alt="Козак" onerror="this.src='https://via.placeholder.com/500x300?text=Козак'">
+</div>
+
+<!-- Ранг Сокіл -->
+<div class="rank">
+    <h2>🦅 Сокіл</h2>
+    <div class="price-list">
+        <span class="price-item"><strong>1 місяць</strong> — 30 грн</span>
+        <span class="price-item"><strong>3 місяці</strong> — 60 грн</span>
+        <span class="price-item"><strong>Назавжди</strong> — 90 грн</span>
+    </div>
+    <img src="2.jpg" alt="Сокіл" onerror="this.src='https://via.placeholder.com/500x300?text=Сокіл'">
+</div>
+
+<!-- Ранг Літописець -->
+<div class="rank">
+    <h2>📜 Літописець</h2>
+    <div class="price-list">
+        <span class="price-item"><strong>1 місяць</strong> — 50 грн</span>
+        <span class="price-item"><strong>3 місяці</strong> — 100 грн</span>
+        <span class="price-item"><strong>Назавжди</strong> — 150 грн</span>
+    </div>
+    <img src="3.jpg" alt="Літописець" onerror="this.src='https://via.placeholder.com/500x300?text=Літописець'">
+</div>
+
+<!-- Ранг Осавул -->
+<div class="rank">
+    <h2>⚔️ Осавул</h2>
+    <div class="price-list">
+        <span class="price-item"><strong>1 місяць</strong> — 80 грн</span>
+        <span class="price-item"><strong>3 місяці</strong> — 140 грн</span>
+        <span class="price-item"><strong>Назавжди</strong> — 180 грн</span>
+    </div>
+    <img src="4.jpg" alt="Осавул" onerror="this.src='https://via.placeholder.com/500x300?text=Осавул'">
+</div>
+
+<!-- Ранг Отаман -->
+<div class="rank">
+    <h2>👑 Отаман</h2>
+    <div class="price-list">
+        <span class="price-item"><strong>1 місяць</strong> — 125 грн</span>
+        <span class="price-item"><strong>3 місяці</strong> — 180 грн</span>
+        <span class="price-item"><strong>Назавжди</strong> — 240 грн</span>
+    </div>
+    <img src="5.jpg" alt="Отаман" onerror="this.src='https://via.placeholder.com/500x300?text=Отаман'">
+</div>
+
+<!-- Ранг Смурфік -->
+<div class="rank">
+    <h2>🧚 Смурфік</h2>
+    <div class="price-list">
+        <span class="price-item"><strong>1 місяць</strong> — 175 грн</span>
+        <span class="price-item"><strong>3 місяці</strong> — 220 грн</span>
+        <span class="price-item"><strong>Назавжди</strong> — 300 грн</span>
+    </div>
+    <img src="6.jpg" alt="Смурфік" onerror="this.src='https://via.placeholder.com/500x300?text=Смурфік'">
+</div>
+
+<!-- Кейси -->
+<div class="rank">
+    <h2>🎁 Кейси</h2>
+    <p><span class="price-tag">100 грн</span> Донат кейс (з донатом назавжди)</p>
+    <p><span class="price-tag">50 грн</span> Кейс з кітами</p>
+    <p><span class="price-tag">25 грн</span> Кейс рандом</p>
+    <p><em style="color: #ffaa00; display: block; margin-top: 15px;">✧ У цьому кейсі йдуть різні предмети, а не ключі від кейсів</em></p>
+</div>
+    
+<div class="button-group">
+    <button class="back-btn" onclick="Back()">← Назад</button>
+    <button class="buy-btn" onclick="Buy()">Купити →</button>
+</div>
+    
+<footer>
+    <span class="decor-dot"></span>
+    © 2025 - 2026 VolyaCraft | Всі права захищені
+    <span class="decor-dot"></span>
+    <br>
+    <span style="font-size: 0.9rem; opacity: 0.7;">Підтримай сервер</span>
+</footer>
+
+</div>
+
+<script>
+function Back() {
+    window.location.href = "index.html";
+}
+function Buy() {
+    window.location.href = "buy.html";
+}
+
+// Додаємо плавне з'явлення елементів
+document.addEventListener('DOMContentLoaded', function() {
+    const elements = document.querySelectorAll('.rank, h1, .button-group');
+    elements.forEach((el, index) => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        el.style.transitionDelay = (index * 0.1) + 's';
+    });
+    
+    setTimeout(() => {
+        elements.forEach(el => {
+            el.style.opacity = '1';
+            el.style.transform = 'translateY(0)';
+        });
+    }, 100);
+});
+</script>
+
+</body>
+</html>
