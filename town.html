@@ -29,6 +29,7 @@ body {
 h1 {
     margin-bottom: 30px;
     color: white;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
 }
 
 .city-container {
@@ -36,6 +37,8 @@ h1 {
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
+    max-width: 1200px;
+    padding: 0 20px;
 }
 
 .city-card {
@@ -50,48 +53,76 @@ h1 {
     font-size: 20px;
     cursor: pointer;
     transition: 0.3s;
+    backdrop-filter: blur(2px);
+    border: 1px solid rgba(255,255,255,0.2);
+    text-align: center;
+    padding: 10px;
 }
 
 .city-card:hover {
     transform: scale(1.05);
     background: rgba(0,0,0,0.8);
+    border-color: rgba(255,255,255,0.5);
 }
 
 /* Модальне вікно */
-
 .modal {
     display: none;
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.7);
+    background: rgba(0,0,0,0.8);
     justify-content: center;
     align-items: center;
+    z-index: 1000;
 }
 
 .modal-content {
-    background: #111;
+    background: #1a1a1a;
     padding: 30px;
-    border-radius: 15px;
-    width: 400px;
+    border-radius: 20px;
+    width: 450px;
+    max-width: 90%;
     text-align: center;
     color: white;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    border: 1px solid #333;
 }
 
 .modal-content h2 {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
+    color: #ffaa00;
+    font-size: 28px;
 }
 
 .modal-content p {
-    margin-bottom: 20px;
+    margin-bottom: 12px;
+    line-height: 1.5;
+    font-size: 16px;
+}
+
+.modal-content p:first-of-type {
+    margin-top: 10px;
+    font-style: italic;
+    color: #ddd;
+}
+
+.button-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin: 25px 0 15px;
 }
 
 .btn {
-    padding: 10px 15px;
-    margin: 5px;
+    padding: 12px 20px;
     border: none;
     border-radius: 8px;
     cursor: pointer;
     font-weight: bold;
+    font-size: 14px;
+    transition: 0.2s;
+    min-width: 140px;
 }
 
 .btn-back {
@@ -99,14 +130,37 @@ h1 {
     color: white;
 }
 
+.btn-back:hover {
+    background: #cc0000;
+}
+
 .btn-map {
     background: #160ef0; 
     color: white; 
 }
 
+.btn-map:hover {
+    background: #2a1fff;
+}
+
 .btn-ds {
-    background: #160ef0; 
+    background: #5865F2; 
     color: white; 
+}
+
+.btn-ds:hover {
+    background: #6d7af5;
+}
+
+/* Адаптація для малих екранів */
+@media (max-width: 500px) {
+    .modal-content {
+        padding: 20px;
+    }
+    .btn {
+        min-width: 120px;
+        padding: 10px 15px;
+    }
 }
     
 </style>
@@ -125,14 +179,10 @@ h1 {
         <p id="modalMer"></p>
         <p id="modalPlayers"></p>
         <p id="modalNation"></p>
-        <a id="modalDS" target="_blank">
-            <button class="btn btn-ds">Діскорд міста</button>
-        </a>
-        <br>
-        <a id="modalMap" target="_blank">
-            <button class="btn btn-map">Знайти місто на мапі</button>
-        </a>
-        <br>
+        
+        <div class="button-group" id="modalButtons">
+        </div>
+        
         <button class="btn btn-back" onclick="closeModal()">Назад</button>
     </div>
 </div>
@@ -141,13 +191,13 @@ h1 {
 
 const cities = [
     {
-        name: "Немірів ",
+        name: "Немірів",
         mer: "Мер: makszik",
         players: "Містян: 2",
         nation: "Нація: УНР",
         description: "Нове невелике місто, де є два гравця це мер і просто гравець, атмосфера там дружня, більше нічого сказать",
         dynmap: "http://volyacraft.pp.ua:20088/?worldname=world&mapname=flat&zoom=0&x=1016&y=64&z=-60"
-        
+        // Без ds - кнопка Discord не з'явиться
     },
     {
         name: "Луганськ",
@@ -155,7 +205,7 @@ const cities = [
         players: "Містянин: 1",
         description: "Невелике місто, що розташувалося на краю України, там будується рп споруда, але там у місті є 1 мер і 1 будинок, загалом у міста є гроші на стримання тому воно не пропаде",
         dynmap: "http://volyacraft.pp.ua:20088/?worldname=world&mapname=flat&zoom=0&x=1016&y=64&z=-60"
-            
+        // Без ds
     },
     {
         name: "Дніпро",
@@ -167,11 +217,12 @@ const cities = [
         dynmap: "http://volyacraft.pp.ua:20088/?worldname=world&mapname=flat&zoom=0&x=1016&y=64&z=-60"
     },
     {
-        name: "житомир",
+        name: "Житомир",
         mer: "Мер: CY15",
         players: "Містян: 2",
         description: "Невелике місто, з маєтком, що наразі будується, у місті є тільки мер, але він допомогає всьому серверу, та завжди веселий",
         dynmap: "http://volyacraft.pp.ua:20088/?worldname=world&mapname=flat&zoom=0&x=1016&y=64&z=-60"
+        // Без ds
     },
     {
         name: "Полтава",
@@ -180,6 +231,7 @@ const cities = [
         nation: "Нація: УНР(столиця нації)",
         description: "Невелике місто, що зкладається з 1 будинка, мер любе всіх таргетить тому, якщо ви про в пвп вам треба сюди. Місто мале, але є де жити",
         dynmap: "http://volyacraft.pp.ua:20088/?worldname=world&mapname=flat&zoom=0&x=1016&y=64&z=-60"
+        // Без ds
     },
     {
         name: "Білогірськ",
@@ -187,26 +239,57 @@ const cities = [
         players: "Містянин: 1",
         description: "Мале містечко, з 1 пам'ятником, загалом будинків небагато і гравців також, місто є одним з найбагатшим через свої рп споруди, але ресурсами є й багатші міста",
         dynmap: "http://volyacraft.pp.ua:20088/?worldname=world&mapname=flat&zoom=0&x=1016&y=64&z=-60"
+        // Без ds
     }
-    
 ];
     
 const container = document.getElementById("cityContainer");
 const modal = document.getElementById("modal");
+const modalTitle = document.getElementById("modalTitle");
+const modalDescription = document.getElementById("modalDescription");
+const modalMer = document.getElementById("modalMer");
+const modalPlayers = document.getElementById("modalPlayers");
+const modalNation = document.getElementById("modalNation");
+const modalButtons = document.getElementById("modalButtons");
 
+// Функція для очищення та створення кнопок в модальному вікні
+function fillModal(city) {
+    modalTitle.textContent = city.name;
+    modalDescription.textContent = city.description || 'Опис відсутній';
+    modalMer.textContent = city.mer || 'Мер: невідомий';
+    modalPlayers.textContent = city.players || 'Містян: 0';
+    modalNation.textContent = city.nation || 'Нація: незалежне місто';
+    
+    // Очищуємо контейнер з кнопками
+    modalButtons.innerHTML = '';
+    
+    // Кнопка для мапи є завжди (бо dynmap є в кожного міста)
+    if (city.dynmap) {
+        const mapBtn = document.createElement('a');
+        mapBtn.href = city.dynmap;
+        mapBtn.target = '_blank';
+        mapBtn.innerHTML = '<button class="btn btn-map">Знайти місто на мапі</button>';
+        modalButtons.appendChild(mapBtn);
+    }
+    
+    // Кнопка для Discord — додаємо ТІЛЬКИ якщо є посилання ds
+    if (city.ds) {
+        const dsBtn = document.createElement('a');
+        dsBtn.href = city.ds;
+        dsBtn.target = '_blank';
+        dsBtn.innerHTML = '<button class="btn btn-ds">Діскорд міста</button>';
+        modalButtons.appendChild(dsBtn);
+    }
+}
+
+// Створюємо картки міст
 cities.forEach(city => {
     const card = document.createElement("div");
     card.className = "city-card";
     card.textContent = city.name;
 
     card.onclick = () => {
-        document.getElementById("modalTitle").textContent = city.name;
-        document.getElementById("modalDescription").textContent = city.description;
-        document.getElementById("modalMer").textContent = city.mer;
-        document.getElementById("modalPlayers").textContent = city.players;
-        document.getElementById("modalNation").textContent = city.nation;
-        document.getElementById("modalDS").href = city.ds;
-        document.getElementById("modalMap").href = city.dynmap;
+        fillModal(city);
         modal.style.display = "flex";
     };
 
@@ -215,6 +298,13 @@ cities.forEach(city => {
 
 function closeModal() {
     modal.style.display = "none";
+}
+
+// Закриття модального вікна при кліку на фон
+window.onclick = function(event) {
+    if (event.target === modal) {
+        closeModal();
+    }
 }
 </script>
 
