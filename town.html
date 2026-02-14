@@ -24,12 +24,55 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    position: relative; /* Для позиціонування кнопки назад */
+}
+
+/* Кнопка назад на головному екрані */
+.back-home {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 10;
+}
+
+.btn-home {
+    background: rgba(30, 30, 30, 0.8);
+    color: white;
+    padding: 10px 20px;
+    border: 2px solid rgba(255, 170, 0, 0.5);
+    border-radius: 40px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.btn-home:hover {
+    background: rgba(50, 50, 50, 0.9);
+    border-color: #ffaa00;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+}
+
+.btn-home:active {
+    transform: translateY(0);
+}
+
+.btn-home span {
+    font-size: 20px;
+    line-height: 1;
 }
     
 h1 {
     margin-bottom: 30px;
     color: white;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    margin-top: 10px;
 }
 
 .city-container {
@@ -124,14 +167,14 @@ h1 {
     font-weight: bold;
     font-size: 15px;
     transition: 0.2s;
-    width: 220px; /* Фіксована ширина для всіх кнопок */
+    width: 220px;
     max-width: 100%;
     box-shadow: 0 4px 6px rgba(0,0,0,0.3);
 }
 
 /* Кольори кнопок */
 .btn-map {
-    background: #0284c7; /* Синій (приємніший за попередній) */
+    background: #0284c7;
     color: white; 
 }
 
@@ -142,7 +185,7 @@ h1 {
 }
 
 .btn-ds {
-    background: #6366f1; /* Індиго (м'якший за стандартний Discord) */
+    background: #6366f1;
     color: white; 
 }
 
@@ -153,7 +196,7 @@ h1 {
 }
 
 .btn-back {
-    background: #b91c1c; /* Темно-червоний */
+    background: #b91c1c;
     color: white;
     margin-top: 5px;
 }
@@ -165,6 +208,23 @@ h1 {
 }
 
 /* Адаптація для малих екранів */
+@media (max-width: 600px) {
+    .back-home {
+        top: 10px;
+        left: 10px;
+    }
+    
+    .btn-home {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+    
+    h1 {
+        font-size: 24px;
+        margin-top: 50px; /* Відступ для кнопки на мобільних */
+    }
+}
+
 @media (max-width: 500px) {
     .modal-content {
         padding: 20px;
@@ -178,6 +238,13 @@ h1 {
 </style>
 </head>
 <body>
+
+<!-- Кнопка назад на головну -->
+<div class="back-home">
+    <button class="btn-home" onclick="goBack()">
+        <span>←</span> На головну
+    </button>
+</div>
 
 <h1>Міста VolyaCraft</h1>
 
@@ -193,7 +260,7 @@ h1 {
         <p id="modalNation"></p>
         
         <div class="button-group" id="modalButtons">
-            <!-- Кнопки будуть додаватися сюди динамічно одна під одною -->
+            <!-- Кнопки будуть додаватися сюди динамічно -->
         </div>
         
         <button class="btn btn-back" onclick="closeModal()">Назад</button>
@@ -210,7 +277,6 @@ const cities = [
         nation: "Нація: УНР",
         description: "Нове невелике місто, де є два гравця це мер і просто гравець, атмосфера там дружня, більше нічого сказать",
         dynmap: "http://volyacraft.pp.ua:20088/"
-        // Без ds
     },
     {
         name: "Луганськ",
@@ -218,7 +284,6 @@ const cities = [
         players: "Містянин: 1",
         description: "Невелике місто, що розташувалося на краю України, там будується рп споруда, але там у місті є 1 мер і 1 будинок, загалом у міста є гроші на стримання тому воно не пропаде",
         dynmap: "http://volyacraft.pp.ua:20088/"
-        // Без ds
     },
     {
         name: "Дніпро",
@@ -235,7 +300,6 @@ const cities = [
         players: "Містян: 2",
         description: "Невелике місто, з маєтком, що наразі будується, у місті є тільки мер, але він допомогає всьому серверу, та завжди веселий",
         dynmap: "http://volyacraft.pp.ua:20088/"
-        // Без ds
     },
     {
         name: "Полтава",
@@ -244,7 +308,6 @@ const cities = [
         nation: "Нація: УНР (столиця нації)",
         description: "Невелике місто, що зкладається з 1 будинка, мер любе всіх таргетить тому, якщо ви про в пвп вам треба сюди. Місто мале, але є де жити",
         dynmap: "http://volyacraft.pp.ua:20088/"
-        // Без ds
     },
     {
         name: "Білогірськ",
@@ -252,7 +315,6 @@ const cities = [
         players: "Містянин: 1",
         description: "Мале містечко, з 1 пам'ятником, загалом будинків небагато і гравців також, місто є одним з найбагатшим через свої рп споруди, але ресурсами є й багатші міста",
         dynmap: "http://volyacraft.pp.ua:20088/"
-        // Без ds
     }
 ];
     
@@ -264,6 +326,11 @@ const modalMer = document.getElementById("modalMer");
 const modalPlayers = document.getElementById("modalPlayers");
 const modalNation = document.getElementById("modalNation");
 const modalButtons = document.getElementById("modalButtons");
+
+// Функція для повернення на index.html
+function goBack() {
+    window.location.href = 'index.html';
+}
 
 // Функція для заповнення модального вікна
 function fillModal(city) {
