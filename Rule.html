@@ -46,6 +46,9 @@ button:hover {
     transform: scale(1.03);
     background: rgba(0, 0, 0, 0.3);
 }
+    
+.back-btn { border-left: 3px solid #5865F2; }
+.buy-btn { border-left: 3px solid #4CAF50; }
 
     /* Верхнє меню */
     .top-menu {
@@ -122,7 +125,7 @@ button:hover {
     <!-- Блок правил -->
     <div class="rules-box">
         <h1>Правила VOLYA CRAFT</h1>
-
+        <button class="back-btn" onclick="Back()">← На головну</button>
         <h2><span class="star">⭐️</span> 1.РОЗДІЛ (ОСНОВНЕ)</h2>
         <p>1.1. Як тільки ви зайшли на сервер ви автоматично погоджуєтесь з правилами. Незнання правил Вас не звільняє від відповідальності.</p>
        <p>1.2. Шкодити серверу в любому вигляді заборонено.
@@ -184,11 +187,10 @@ button:hover {
 <p>3.8 Заборонено строге спілкування/партнерство/агентсво/пітримка/допомога/взаємозв'язки та інше з користувачем Slawojk та його командами "Legion Ua", "RPS Squad" та "S.T.U.R.M.K.O.R.P.S" (Виняток: за дозвілом Власника/Куратора/Керівника або Головного Адміністратора)
 Покарання: Пермач + чорний список без можливості повернення</p>
     </div>
-    <script>
-        function Back() {
+<script>
+function Back() {
     window.location.href = "index.html";
 }
-
-    </script>
+</script>
 </body>
 </html>
