@@ -12,6 +12,7 @@
     color: white;
     text-align: center;
     display: flex;
+    flex-direction: column; /* Changed to column for footer placement */
     justify-content: center;
     align-items: center;
     background: linear-gradient(to top, 
@@ -26,6 +27,7 @@
     background-attachment: fixed;
     position: relative;
     padding: 20px;
+    margin: 0; /* Added to reset default margin */
     }
 
     button {
@@ -40,6 +42,7 @@
     color: white;
     border: 1px solid rgba(255, 255, 255, 0.2);
     min-width: 160px;
+    margin: 5px; /* Added slight margin for buttons */
 }
 
 button:hover {
@@ -50,10 +53,11 @@ button:hover {
 .back-btn { border-left: 3px solid #5865F2; }
 .buy-btn { border-left: 3px solid #4CAF50; }
 
-.org-btn { border-left: 3px solid #5865F2; }
-.org-btn { border-left: 3px solid #4CAF50; }
-
-    /* Верхнє меню */
+/* Fixed duplicate selector - merged and corrected */
+.org-btn { 
+    border-left: 3px solid #4CAF50; /* Using green as per original intent for the second button */
+}
+    /* Верхнє меню (if needed, but hidden now) */
     .top-menu {
         display: flex;
         justify-content: flex-end;
@@ -82,6 +86,7 @@ button:hover {
         padding: 30px;
         border-radius: 15px;
         backdrop-filter: blur(5px);
+        flex-shrink: 0; /* Prevents shrinking when footer is present */
     }
 
     h1 {
@@ -120,6 +125,20 @@ button:hover {
     position: relative;
     z-index: 1;
     width: 100%;
+    text-align: center; /* Ensures text is centered */
+    color: white;
+    text-shadow: 1px 1px 2px black;
+    margin-top: 20px; /* Adds space from the rules box */
+    flex-shrink: 0; /* Prevents footer from shrinking */
+    }
+    
+    /* Simple container for button groups if needed */
+    .button-group {
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin: 20px 0;
     }
 </style>
 </head>
@@ -192,14 +211,23 @@ button:hover {
 <p>3.7. Правила можуть мінятися в любий момент (тому слідкуйте за ними).</p>
 <p>3.8 Заборонено строге спілкування/партнерство/агентсво/пітримка/допомога/взаємозв'язки та інше з користувачем Slawojk та його командами "Legion Ua", "RPS Squad" та "S.T.U.R.M.K.O.R.P.S" (Виняток: за дозвілом Власника/Куратора/Керівника або Головного Адміністратора)
 Покарання: Пермач + чорний список без можливості повернення</p>
-<button class="back-btn" onclick="Back()">← На головну</button>
-<button class="org-btn" onclick="DS()">Оригінал →</button>
+<div class="button-group">
+    <button class="back-btn" onclick="Back()">← На головну</button>
+    <button class="org-btn" onclick="DS()">Оригінал →</button>
+</div>
     </div>
+    
+    <!-- Виправлений футер з написом -->
+    <footer class="footer">
+        © 2025 - 2026 VolyaCraft | Всі права захищені
+    </footer>
+
 <script>
 function Back() {
     window.location.href = "index.html";
 }
-function DS{
+// Fixed function syntax: added missing parentheses
+function DS() {
     window.open("https://discord.gg/57nWapUgvT", "_blank");
 }
 </script>
