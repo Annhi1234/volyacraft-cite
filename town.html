@@ -111,11 +111,33 @@ h1 {
     justify-content: space-between;
 }
 
+/* Ліва частина картки з іконкою та назвою */
+.city-card-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex: 1;
+}
+
+/* Кругла фотка для Дніпра */
+.city-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    display: block;
+}
+
+/* Стрілка справа */
 .city-card::after {
     content: '→';
     font-size: 1.8rem;
     color: white;
     opacity: 0.5;
+    margin-left: 15px;
 }
 
 .city-card:hover {
@@ -224,6 +246,15 @@ footer {
         font-size: 1.2rem;
         padding: 15px 25px;
     }
+    
+    .city-icon {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .city-card-left {
+        gap: 12px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -244,6 +275,15 @@ footer {
     
     .city-card::after {
         font-size: 1.5rem;
+    }
+    
+    .city-icon {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .city-card-left {
+        gap: 10px;
     }
     
     .modal-content {
@@ -312,7 +352,9 @@ const cities = [
         nation: "Нація: УНР",
         description: "Місто Дніпро, є одним з найбільших міст на сервері, має багато людей, та декілька рп споруд, люди добрі і зазвичай в онлайні.",
         ds: "https://discord.gg/mFdept9h4v",
-        dynmap: "http://volyacraft.pp.ua:20088/"
+        dynmap: "http://volyacraft.pp.ua:20088/",
+        // Додаємо властивість для іконки тільки для Дніпра
+        icon: "Dnipro.png"
     },
     {
         name: "житомир",
@@ -392,14 +434,40 @@ function fillModal(city) {
     }
 }
 
+// Створюємо картки міст
 cities.forEach(city => {
     const card = document.createElement("div");
     card.className = "city-card";
-    card.textContent = city.name;
+    
+    // Створюємо ліву частину з іконкою (якщо є) та назвою
+    const leftDiv = document.createElement("div");
+    leftDiv.className = "city-card-left";
+    
+    // Додаємо іконку тільки для Дніпра
+    if (city.icon) {
+        const icon = document.createElement("img");
+        icon.src = city.icon;
+        icon.alt = city.name;
+        icon.className = "city-icon";
+        // Якщо зображення не завантажиться, показуємо заглушку
+        icon.onerror = function() {
+            this.style.display = 'none';
+        };
+        leftDiv.appendChild(icon);
+    }
+    
+    // Додаємо назву міста
+    const nameSpan = document.createElement("span");
+    nameSpan.textContent = city.name;
+    leftDiv.appendChild(nameSpan);
+    
+    card.appendChild(leftDiv);
+    
     card.onclick = () => {
         fillModal(city);
         modal.style.display = "flex";
     };
+    
     container.appendChild(card);
 });
 
