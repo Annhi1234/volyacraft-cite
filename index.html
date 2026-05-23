@@ -4,13 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>VolyaCraft | Політичний Minecraft сервер</title>
-
-<!-- ДОДАНО: Favicon (значок сайту) -->
-<!-- Замініть "favicon.ico" на шлях до вашого зображення. Підтримуються формати: .ico, .png, .svg -->
 <link rel="icon" type="image/x-icon" href="ava.ico">
-<!-- Для кращої сумісності з сучасними браузерами можна додати й PNG -->
-<!-- <link rel="icon" type="image/png" sizes="32x32" href="path/to/your-icon.png"> -->
-
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -32,7 +26,6 @@ body {
     position: relative;
 }
 
-/* Затемнення для кращої читабельності */
 body::before {
     content: '';
     position: fixed;
@@ -152,10 +145,8 @@ button:hover {
     background: rgba(0, 0, 0, 0.3);
 }
 
-/* Кольорові акценти для кнопок */
 .discord-btn { border-left: 3px solid #5865F2; }
 .donate-btn { border-left: 3px solid #ffaa00; }
-.town-btn { border-left: 3px solid #4CAF50; }
 .map-btn { border-left: 3px solid #03A9F4; }
 .disflip-btn { border-left: 3px solid #ff6b6b; }
 .allmc-btn { border-left: 3px solid #73ffda; }
@@ -170,7 +161,6 @@ footer {
     width: 100%;
 }
 
-/* Адаптивність */
 @media (max-width: 768px) {
     header h1 {
         font-size: 3rem;
@@ -264,7 +254,6 @@ footer {
     <div class="button-group">
         <button class="discord-btn" onclick="joinDiscord()">Discord</button>
         <button class="donate-btn" onclick="Donate()">Донат</button>
-        <button class="town-btn" onclick="Town()">Міста</button>
         <button class="map-btn" onclick="Map()">Мапа</button>
         <button class="Rule-btn" onclick="Rule()">Правила</button>
         <button class="disflip-btn" onclick="joinDisflip()">Disflip</button>
@@ -304,16 +293,11 @@ function Donate() {
 function Map() {
     window.open("http://volyacraft.pp.ua:20088/", "_blank");
 }  
-
-function Town() {
-    window.location.href = "town.html";
-} 
-    function Rule() {
+function Rule() {
     window.location.href = "Rule.html";
 } 
 </script>
-
-<!-- ДОДАНО: Альтернативний спосіб для PNG, якщо favicon.ico не спрацює -->
+    
 <link rel="icon" type="image/png" href="favicon.png">
 
 </body>
