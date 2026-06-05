@@ -65,6 +65,8 @@ header p {
     flex-wrap: wrap;
     gap: 15px;
     margin: 30px 0 20px;
+    position: relative;
+    z-index: 1; 
 }
 
 button {
@@ -86,9 +88,11 @@ button:hover {
     background: rgba(0, 0, 0, 0.35);
 }
 
+.back-btn { 
+    border-left: 3px solid #5865F2; 
+}
 .disflip-btn { border-left: 3px solid #ff6b6b; }
 .allmc-btn { border-left: 3px solid #73ffda; }
-.home-btn { border-left: 3px solid #ffffff; }
 
 footer {
     padding: 15px;
@@ -108,7 +112,7 @@ footer {
 </header>
 
 <div class="button-group">
-    <button class="home-btn" onclick="goHome()">Головна</button>
+    <button class="back-btn" onclick="goHome()">← На головну</button>
     <button class="disflip-btn" onclick="joinDisflip()">Disflip</button>
     <button class="allmc-btn" onclick="joinAllmc()">Allmc</button>
 </div>
