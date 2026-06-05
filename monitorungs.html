@@ -1,1 +1,280 @@
+<!DOCTYPE html>
+<html lang="ua">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VolyaCraft | Моніторинги</title>
+<link rel="icon" type="image/x-icon" href="ava.ico">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Segoe UI', 'Inter', system-ui, sans-serif;
+    min-height: 100vh;
+    color: white;
+    text-align: center;
+    background: linear-gradient(to top, 
+        #ffaa00 0%, 
+        #ffaa00 15%, 
+        #e6a100 25%, 
+        #cc9900 35%, 
+        #4da6ff 60%, 
+        #0057b7 85%, 
+        #003d7a 100%
+    );
+    background-attachment: fixed;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.2);
+    pointer-events: none;
+    z-index: 0;
+}
+
+header {
+    padding: 60px 20px 30px;
+    position: relative;
+    z-index: 1;
+}
+
+header h1 {
+    font-size: 4.5rem;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-weight: 800;
+    letter-spacing: -1px;
+    color: white;
+}
+
+header p {
+    font-size: 1.4rem;
+    opacity: 0.95;
+    margin-bottom: 15px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+    font-weight: 400;
+    display: inline-block;
+    padding: 8px 25px;
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 50px;
+}
+
+.section {
+    padding: 20px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.section h2 {
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+    font-weight: 700;
+    color: white;
+}
+
+.description {
+    max-width: 850px;
+    margin: 20px auto 30px;
+    line-height: 1.7;
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.15);
+    padding: 25px 30px;
+    border-radius: 25px;
+}
+
+.ip-container {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+    margin: 30px 0;
+}
+
+.ip-box {
+    padding: 20px 30px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 50px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 280px;
+    font-weight: 600;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.ip-box:hover {
+    transform: scale(1.03);
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin: 30px 0 20px;
+}
+
+button {
+    padding: 14px 28px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: rgba(0, 0, 0, 0.2);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    min-width: 160px;
+}
+
+button:hover {
+    transform: scale(1.05);
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.discord-btn { border-left: 3px solid #5865F2; }
+.donate-btn { border-left: 3px solid #ffaa00; }
+.map-btn { border-left: 3px solid #03A9F4; }
+.disflip-btn { border-left: 3px solid #ff6b6b; }
+.allmc-btn { border-left: 3px solid #73ffda; }
+.Rule-btn { border-left: 3px solid #03A9F4; }
+    
+footer {
+    padding: 15px;
+    font-size: 0.95rem;
+    opacity: 0.9;
+    position: relative;
+    z-index: 1;
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 3rem;
+    }
+    
+    .section h2 {
+        font-size: 1.8rem;
+    }
+    
+    .description {
+        font-size: 1rem;
+        padding: 20px;
+    }
+    
+    .ip-box {
+        font-size: 1rem;
+        padding: 15px 20px;
+        min-width: 240px;
+    }
+    
+    button {
+        padding: 12px 22px;
+        font-size: 1rem;
+        min-width: 140px;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        padding: 40px 15px 20px;
+    }
+    
+    header h1 {
+        font-size: 2.2rem;
+    }
+    
+    .button-group {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    button {
+        width: 100%;
+        max-width: 260px;
+    }
+    
+    .ip-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .ip-box {
+        width: 100%;
+        max-width: 300px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Моніторинги</h1>
+    <p>Моніторинги де є VolyaCraft</p>
+</header>
+    <div class="button-group">
+        <button class="discord-btn" onclick="joinDiscord()">Discord</button>
+        <button class="donate-btn" onclick="Donate()">Донат</button>
+        <button class="map-btn" onclick="Map()">Мапа</button>
+        <button class="Rule-btn" onclick="Rule()">Правила</button>
+        <button class="disflip-btn" onclick="joinDisflip()">Disflip</button>
+        <button class="allmc-btn" onclick="joinAllmc()">Allmc</button>
+    </div>
+</div>
+    
+<footer>
+    © 2025 - 2026 VolyaCraft | Всі права захищені
+</footer>
+
+<script>
+function copyIP(ip) {
+    navigator.clipboard.writeText(ip).then(() => {
+        alert("✅ Скопійовано: " + ip);
+    }).catch(() => {
+        alert("❌ Помилка копіювання");
+    });
+}
+
+function joinDiscord() {
+    window.open("https://discord.gg/Eek6hrQnk8", "_blank");
+}
+
+function joinDisflip() {
+    window.open("https://disflip.com/guild/1414285364415299809", "_blank");
+}
+    
+function joinAllmc() {
+    window.open("https://allmc.in.ua/volyacraft-pp-ua-20020", "_blank");
+}    
+    
+function Donate() {
+    window.location.href = "Donate.html";
+}  
+
+function Map() {
+    window.open("http://volyacraft.pp.ua:20088/", "_blank");
+}  
+function Rule() {
+    window.location.href = "Rule.html";
+} 
+</script>
+    
+<link rel="icon" type="image/png" href="favicon.png">
+
+</body>
+</html>
 
