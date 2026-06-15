@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VolyaCraft | Моніторинги</title>
+<title>VolyaCraft | Канали</title>
 <link rel="icon" type="image/x-icon" href="ava.ico">
 
 <style>
@@ -59,19 +59,74 @@ header p {
     border-radius: 50px;
 }
 
-.button-group {
+.cards-container {
     display: flex;
     justify-content: center;
+    align-items: center;
     flex-wrap: wrap;
-    gap: 15px;
-    margin: 30px 0 20px;
+    gap: 25px;
+    max-width: 900px;
+    margin: 30px auto 40px;
+    padding: 0 20px;
     position: relative;
     z-index: 1; 
 }
 
-button {
-    padding: 14px 28px;
-    font-size: 1.1rem;
+.yt-card {
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    padding: 25px;
+    width: 280px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: white;
+    backdrop-filter: blur(5px);
+}
+
+.yt-card:hover {
+    transform: translateY(-8px) scale(1.03);
+    background: rgba(0, 0, 0, 0.4);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.card-1 { border-left: 4px solid #ff6b6b; }
+.card-2 { border-left: 4px solid #73ffda; }
+
+.yt-avatar {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    object-fit: cover;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.yt-name {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.yt-subtext {
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
+
+.nav-container {
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.back-btn { 
+    padding: 12px 28px;
+    font-size: 1rem;
     font-weight: 600;
     border: none;
     border-radius: 50px;
@@ -80,19 +135,13 @@ button {
     background: rgba(0, 0, 0, 0.2);
     color: white;
     border: 1px solid rgba(255, 255, 255, 0.2);
-    min-width: 160px;
+    border-left: 3px solid #5865F2; 
 }
 
-button:hover {
+.back-btn:hover {
     transform: scale(1.06);
     background: rgba(0, 0, 0, 0.35);
 }
-
-.back-btn { 
-    border-left: 3px solid #5865F2; 
-}
-.disflip-btn { border-left: 3px solid #ff6b6b; }
-.allmc-btn { border-left: 3px solid #73ffda; }
 
 footer {
     padding: 15px;
@@ -107,14 +156,28 @@ footer {
 <body>
 
 <header>
-    <h1>Моніторинги</h1>
-    <p>Моніторинги де є VolyaCraft</p>
+    <h1>Наші Канали</h1>
+    <p>YouTube контент від VolyaCraft</p>
 </header>
 
-<div class="button-group">
+<div class="nav-container">
     <button class="back-btn" onclick="goHome()">← На головну</button>
-    <button class="disflip-btn" onclick="joinDisflip()">Disflip</button>
-    <button class="allmc-btn" onclick="joinAllmc()">Allmc</button>
+</div>
+
+<div class="cards-container">
+    
+    <a href="https://youtube.com/channel/UCEMTaOMJFGrMlSZwsj-6jKg/" target="_blank" class="yt-card card-1">
+        <img class="yt-avatar" src="https://cms.googleusercontent.com/wcm/channels/UCEMTaOMJFGrMlSZwsj-6jKg/photo.jpg" alt="Avatar" onerror="this.src='https://www.youtube.com/favicon.ico'">
+        <div class="yt-name">VolyaCraft Channel</div>
+        <div class="yt-subtext">Дивитись на YouTube ↗</div>
+    </a>
+
+    <a href="https://www.youtube.com/@Gatorik" target="_blank" class="yt-card card-2">
+        <img class="yt-avatar" id="gatorik-img" src="https://www.youtube.com/favicon.ico" alt="Avatar">
+        <div class="yt-name">Gatorik</div>
+        <div class="yt-subtext">Дивитись на YouTube ↗</div>
+    </a>
+
 </div>
 
 <footer>
@@ -122,17 +185,13 @@ footer {
 </footer>
 
 <script>
-function joinDisflip() {
-    window.open("https://disflip.com/guild/1414285364415299809", "_blank");
-}
-
-function joinAllmc() {
-    window.open("https://allmc.in.ua/volyacraft-pp-ua-20020", "_blank");
-}
-
 function goHome() {
     window.location.href = "index.html";
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById('gatorik-img').src = "https://api.dicebear.com/7.x/bottts/svg?seed=Gatorik";
+});
 </script>
 
 </body>
