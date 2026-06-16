@@ -147,6 +147,7 @@ button:hover {
 
 .discord-btn { border-left: 3px solid #5865F2; }
 .donate-btn { border-left: 3px solid #ffaa00; }
+.tytor-btn { border-left: 3px solid #de0016; }
 .map-btn { border-left: 3px solid #03A9F4; }
 .disflip-btn { border-left: 3px solid #ff6b6b; }
 .allmc-btn { border-left: 3px solid #73ffda; }
@@ -254,6 +255,7 @@ footer {
     <div class="button-group">
         <button class="discord-btn" onclick="joinDiscord()">Discord</button>
         <button class="donate-btn" onclick="Donate()">Донат</button>
+        <button class="tytor-btn" onclick="Tytor()">Тутор</button>
         <button class="map-btn" onclick="Map()">Мапа</button>
         <button class="Rule-btn" onclick="Rule()">Правила</button>
         <button class="disflip-btn" onclick="Monitors()">Ютубери</button>
@@ -283,8 +285,12 @@ function Monitors() {
     
 function Donate() {
     window.location.href = "Donate.html";
+}
+    
+function Tytor() {
+    window.open("https://www.youtube.com/watch?v=VmdkLgCGbcc", "_blank");
 }  
-
+    
 function Map() {
     window.open("http://volyacraft.pp.ua:20088/", "_blank");
 }  
