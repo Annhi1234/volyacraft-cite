@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="ua">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Завантажити VL Launcher | VolyaCraft</title>
+<link rel="icon" type="image/x-icon" href="ava.ico">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Segoe UI', 'Inter', system-ui, sans-serif;
+    min-height: 100vh;
+    color: white;
+    text-align: center;
+    background: linear-gradient(to top, 
+        #ffaa00 0%, 
+        #ffaa00 15%, 
+        #e6a100 25%, 
+        #cc9900 35%, 
+        #4da6ff 60%, 
+        #0057b7 85%, 
+        #003d7a 100%
+    );
+    background-attachment: fixed;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.2);
+    pointer-events: none;
+    z-index: 0;
+}
+
+header {
+    padding: 40px 20px 20px;
+    position: relative;
+    z-index: 1;
+}
+
+header h1 {
+    font-size: 3.5rem;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-weight: 800;
+    letter-spacing: -1px;
+    color: white;
+}
+
+header p {
+    font-size: 1.2rem;
+    opacity: 0.95;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+    font-weight: 400;
+    display: inline-block;
+    padding: 6px 20px;
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 50px;
+}
+
+.back-link {
+    display: inline-block;
+    margin-top: 15px;
+    color: white;
+    opacity: 0.7;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: opacity 0.3s ease;
+}
+
+.back-link:hover {
+    opacity: 1;
+}
+
+.section {
+    padding: 20px 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.section h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+    font-weight: 700;
+    color: white;
+}
+
+.download-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin: 30px 0;
+}
+
+.download-card {
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 25px;
+    padding: 35px 25px 30px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.download-card:hover {
+    transform: translateY(-5px);
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.download-card .icon {
+    font-size: 4rem;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.download-card h3 {
+    font-size: 1.8rem;
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+
+.download-card .version {
+    font-size: 0.9rem;
+    opacity: 0.7;
+    margin-bottom: 15px;
+}
+
+.download-card .desc {
+    font-size: 1rem;
+    opacity: 0.85;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.download-btn-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+.download-btn {
+    padding: 14px 35px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: rgba(0, 0, 0, 0.2);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    width: 100%;
+    max-width: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.download-btn:hover {
+    transform: scale(1.05);
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.btn-google { border-left: 4px solid #4285F4; }
+.btn-itchio { border-left: 4px solid #fa5c5c; }
+.btn-direct { border-left: 4px solid #73ffda; }
+
+.download-card.launcher {
+    border-left: 3px solid #ffaa00;
+}
+
+.download-card.app {
+    border-left: 3px solid #4da6ff;
+}
+
+footer {
+    padding: 15px;
+    font-size: 0.95rem;
+    opacity: 0.9;
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2.5rem;
+    }
+    
+    .download-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .section h2 {
+        font-size: 1.6rem;
+    }
+    
+    .download-card {
+        padding: 25px 20px;
+    }
+    
+    .download-card .icon {
+        font-size: 3rem;
+    }
+    
+    .download-card h3 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        padding: 30px 15px 15px;
+    }
+    
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    .download-btn {
+        padding: 12px 25px;
+        font-size: 1rem;
+        max-width: 100%;
+    }
+    
+    .download-card {
+        padding: 20px 15px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Завантажити</h1>
+    <p>VL Launcher та додаток VolyaCraft</p>
+    <a href="index.html" class="back-link">← Повернутися на головну</a>
+</header>
+
+<div class="section">
+    <div class="download-grid">
+        
+        <div class="download-card launcher">
+            <span class="icon"></span>
+            <h3>VL Launcher</h3>
+            <div class="version"></div>
+            <div class="desc">
+                Зручний лаунчер для швидкого запуску сервера<br>
+                з автоматичними оновленнями
+            </div>
+            <div class="download-btn-group">
+                <button class="download-btn btn-google" onclick="openGoogleDrive()">
+                    Гугл диск
+                </button>
+                <button class="download-btn btn-itchio" onclick="openItchIo()">
+                    Itch.io
+                </button>
+            </div>
+        </div>
+
+        <div class="download-card app">
+            <span class="icon"></span>
+            <h3>VolyaCraft App</h3>
+            <div class="version">Версія 1.0</div>
+            <div class="desc">
+                Мобільний додаток для перегляду<br>
+                карти, чату та новин сервера
+            </div>
+            <div class="download-btn-group">
+                <button class="download-btn btn-google" onclick="openAppGoogle()">
+                    Гугл диск
+                </button>
+                <button class="download-btn btn-direct" onclick="openAppDirect()">
+                    Пряме посилання
+                </button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<footer>
+    © 2025 - 2026 VolyaCraft | Created by A and I studio
+</footer>
+
+<script>
+function openGoogleDrive() {
+    window.open("https://drive.google.com/drive/folders/your-launcher-link", "_blank");
+}
+
+function openItchIo() {
+    window.open("https://your-itch-io-link.itch.io/", "_blank");
+}
+
+function openAppGoogle() {
+    window.open("https://drive.google.com/file/d/1VjLPNtzpViQcUy_ZOQqOOdsZFzEDBZhZ/view?usp=drivesdk", "_blank");
+}
+
+function openAppDirect() {
+    window.open("https://your-direct-download-link.com/app.apk", "_blank");
+}
+</script>
+
+</body>
+</html>
