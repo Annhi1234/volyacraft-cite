@@ -152,79 +152,7 @@ button:hover {
 .disflip-btn { border-left: 3px solid #ff6b6b; }
 .allmc-btn { border-left: 3px solid #73ffda; }
 .Rule-btn { border-left: 3px solid #03A9F4; }
-    
-.launcher-section {
-    margin: 40px auto 20px;
-    padding: 30px 30px 35px;
-    max-width: 850px;
-    background: rgba(0, 0, 0, 0.15);
-    border-radius: 25px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.launcher-title {
-    font-size: 2rem;
-    font-weight: 700;
-    margin-bottom: 8px;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
-}
-
-.launcher-subtitle {
-    font-size: 1rem;
-    opacity: 0.8;
-    margin-bottom: 25px;
-    font-weight: 400;
-}
-
-.launcher-buttons {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
-.launcher-btn {
-    padding: 16px 40px;
-    font-size: 1.15rem;
-    font-weight: 700;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    background: rgba(0, 0, 0, 0.2);
-    color: white;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    min-width: 200px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-}
-
-.launcher-btn:hover {
-    transform: scale(1.05);
-    background: rgba(0, 0, 0, 0.3);
-}
-
-.google-btn { border-left: 4px solid #4285F4; }
-.itchio-btn { border-left: 4px solid #fa5c5c; }
-
-.launcher-icon {
-    font-size: 1.4rem;
-    line-height: 1;
-}
-
-.download-badge {
-    display: inline-block;
-    background: rgba(255, 170, 0, 0.25);
-    padding: 2px 12px;
-    border-radius: 20px;
-    font-size: 0.7rem;
-    font-weight: 600;
-    margin-left: 8px;
-    border: 1px solid rgba(255, 170, 0, 0.2);
-    vertical-align: middle;
-}
+.launcher-nav-btn { border-left: 3px solid #ffaa00; }
 
 footer {
     padding: 15px;
@@ -260,21 +188,6 @@ footer {
         font-size: 1rem;
         min-width: 140px;
     }
-
-    .launcher-section {
-        padding: 25px 20px;
-        margin: 30px 15px;
-    }
-
-    .launcher-title {
-        font-size: 1.6rem;
-    }
-
-    .launcher-btn {
-        padding: 14px 28px;
-        font-size: 1rem;
-        min-width: 170px;
-    }
 }
 
 @media (max-width: 480px) {
@@ -304,25 +217,6 @@ footer {
     .ip-box {
         width: 100%;
         max-width: 300px;
-    }
-
-    .launcher-buttons {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .launcher-btn {
-        width: 100%;
-        max-width: 280px;
-    }
-
-    .launcher-section {
-        padding: 20px 15px;
-        margin: 20px 10px;
-    }
-
-    .launcher-title {
-        font-size: 1.3rem;
     }
 }
 </style>
@@ -366,27 +260,7 @@ footer {
         <button class="map-btn" onclick="Map()">Мапа</button>
         <button class="Rule-btn" onclick="Rule()">Правила</button>
         <button class="disflip-btn" onclick="Monitors()">Ютубери</button>
-    </div>
-
-    <!-- ОНОВЛЕНИЙ БЛОК: Встановити VL Launcher -->
-    <div class="launcher-section">
-        <div class="launcher-title">
-            Встановити VL Launcher
-            <span class="download-badge">v2.0</span>
-        </div>
-        <div class="launcher-subtitle">
-            Оберіть зручний спосіб завантаження
-        </div>
-        <div class="launcher-buttons">
-            <button class="launcher-btn google-btn" onclick="openGoogleDrive()">
-                <span class="launcher-icon"></span>
-                Гугл диск
-            </button>
-            <button class="launcher-btn itchio-btn" onclick="openItchIo()">
-                <span class="launcher-icon"></span>
-                Itch.io
-            </button>
-        </div>
+        <button class="launcher-nav-btn" onclick="goToLauncher()">Додатки</button>
     </div>
 </div>
     
@@ -426,12 +300,8 @@ function Rule() {
     window.location.href = "Rule.html";
 } 
 
-function openGoogleDrive() {
-    window.open("https://drive.google.com/drive/folders/your-link-here", "_blank");
-}
-
-function openItchIo() {
-    window.open("https://your-itch-io-link.itch.io/", "_blank");
+function goToLauncher() {
+    window.location.href = "launcher.html";
 }
 </script>
     
