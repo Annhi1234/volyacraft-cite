@@ -152,50 +152,150 @@ button:hover {
 .disflip-btn { border-left: 3px solid #ff6b6b; }
 .allmc-btn { border-left: 3px solid #73ffda; }
 .Rule-btn { border-left: 3px solid #03A9F4; }
-    
-/* Новий блок для лаунчера */
+
 .launcher-section {
-    margin: 40px 0 20px;
+    margin: 50px 0 30px;
+    padding: 40px 30px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+    border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.launcher-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 30% 50%, rgba(255, 170, 0, 0.1) 0%, transparent 70%);
+    animation: shimmer 8s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes shimmer {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(10%, 10%); }
 }
 
 .launcher-title {
-    font-size: 2rem;
-    font-weight: 700;
-    margin-bottom: 25px;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.launcher-subtitle {
+    font-size: 1rem;
+    opacity: 0.8;
+    margin-bottom: 30px;
+    font-weight: 400;
+    position: relative;
+    z-index: 1;
+    letter-spacing: 0.5px;
 }
 
 .launcher-buttons {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 25px;
+    gap: 20px;
+    position: relative;
+    z-index: 1;
 }
 
 .launcher-btn {
-    padding: 18px 40px;
-    font-size: 1.3rem;
+    padding: 18px 45px;
+    font-size: 1.2rem;
     font-weight: 700;
     border: none;
     border-radius: 60px;
     cursor: pointer;
-    transition: all 0.3s ease;
-    background: rgba(0, 0, 0, 0.25);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background: rgba(255, 255, 255, 0.08);
     color: white;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    min-width: 200px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    min-width: 220px;
     letter-spacing: 0.5px;
-    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+.launcher-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.6s ease;
+}
+
+.launcher-btn:hover::before {
+    left: 100%;
 }
 
 .launcher-btn:hover {
-    transform: scale(1.06);
-    background: rgba(0, 0, 0, 0.4);
-    border-color: rgba(255, 255, 255, 0.6);
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
-.google-btn { border-left: 5px solid #4285F4; }
-.itchio-btn { border-left: 5px solid #fa5c5c; }
+.launcher-btn:active {
+    transform: scale(0.97);
+}
+
+.google-btn { 
+    border-left: 5px solid #4285F4;
+    background: linear-gradient(135deg, rgba(66, 133, 244, 0.2), rgba(66, 133, 244, 0.05));
+}
+
+.google-btn:hover {
+    border-color: #4285F4;
+    background: linear-gradient(135deg, rgba(66, 133, 244, 0.35), rgba(66, 133, 244, 0.1));
+    box-shadow: 0 8px 25px rgba(66, 133, 244, 0.3);
+}
+
+.itchio-btn { 
+    border-left: 5px solid #fa5c5c;
+    background: linear-gradient(135deg, rgba(250, 92, 92, 0.2), rgba(250, 92, 92, 0.05));
+}
+
+.itchio-btn:hover {
+    border-color: #fa5c5c;
+    background: linear-gradient(135deg, rgba(250, 92, 92, 0.35), rgba(250, 92, 92, 0.1));
+    box-shadow: 0 8px 25px rgba(250, 92, 92, 0.3);
+}
+
+.launcher-icon {
+    font-size: 1.6rem;
+    line-height: 1;
+}
+
+.download-badge {
+    display: inline-block;
+    background: rgba(255, 170, 0, 0.3);
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-left: 8px;
+    border: 1px solid rgba(255, 170, 0, 0.3);
+}
 
 footer {
     padding: 15px;
@@ -232,14 +332,19 @@ footer {
         min-width: 140px;
     }
 
+    .launcher-section {
+        padding: 30px 20px;
+        margin: 30px 10px;
+    }
+
     .launcher-title {
-        font-size: 1.6rem;
+        font-size: 1.8rem;
     }
 
     .launcher-btn {
-        padding: 14px 28px;
-        font-size: 1.1rem;
-        min-width: 160px;
+        padding: 15px 30px;
+        font-size: 1rem;
+        min-width: 180px;
     }
 }
 
@@ -279,7 +384,16 @@ footer {
 
     .launcher-btn {
         width: 100%;
-        max-width: 280px;
+        max-width: 300px;
+    }
+
+    .launcher-section {
+        padding: 25px 15px;
+    }
+
+    .launcher-title {
+        font-size: 1.5rem;
+        flex-wrap: wrap;
     }
 }
 </style>
@@ -325,12 +439,26 @@ footer {
         <button class="disflip-btn" onclick="Monitors()">Ютубери</button>
     </div>
 
-    <!-- НОВИЙ БЛОК: Встановити VL Launcher -->
+    <!-- ПОКРАЩЕНИЙ БЛОК: Встановити VL Launcher -->
     <div class="launcher-section">
-        <div class="launcher-title">Встановити VL Launcher</div>
+        <div class="launcher-title">
+            ⚡ Встановити VL Launcher
+            <span class="download-badge">v2.0</span>
+        </div>
+        <div class="launcher-subtitle">
+            Оберіть зручний спосіб завантаження
+        </div>
         <div class="launcher-buttons">
-            <button class="launcher-btn google-btn" onclick="openGoogleDrive()">Гугл диск</button>
-            <button class="launcher-btn itchio-btn" onclick="openItchIo()">Itch.io</button>
+            <button class="launcher-btn google-btn" onclick="openGoogleDrive()">
+                <span class="launcher-icon">📁</span>
+                Гугл диск
+                <span style="font-size: 0.7rem; opacity: 0.6;">⬇</span>
+            </button>
+            <button class="launcher-btn itchio-btn" onclick="openItchIo()">
+                <span class="launcher-icon">🎮</span>
+                Itch.io
+                <span style="font-size: 0.7rem; opacity: 0.6;">⬇</span>
+            </button>
         </div>
     </div>
 </div>
