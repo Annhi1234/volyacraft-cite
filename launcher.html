@@ -62,20 +62,28 @@ header p {
     padding: 6px 20px;
     background: rgba(0, 0, 0, 0.15);
     border-radius: 50px;
+    margin-bottom: 15px;
 }
 
-.back-link {
+.back-btn {
     display: inline-block;
-    margin-top: 15px;
-    color: white;
-    opacity: 0.7;
-    text-decoration: none;
+    padding: 12px 28px;
     font-size: 1rem;
-    transition: opacity 0.3s ease;
+    font-weight: 600;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: rgba(0, 0, 0, 0.2);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    text-decoration: none;
+    min-width: 160px;
 }
 
-.back-link:hover {
-    opacity: 1;
+.back-btn:hover {
+    transform: scale(1.05);
+    background: rgba(0, 0, 0, 0.3);
 }
 
 .section {
@@ -246,16 +254,14 @@ footer {
 <header>
     <h1>Завантажити</h1>
     <p>VL Launcher та додаток VolyaCraft</p>
-    <a href="index.html" class="back-link">← Повернутися на головну</a>
+    <a href="index.html" class="back-btn">← Повернутися на головну</a>
 </header>
 
 <div class="section">
     <div class="download-grid">
         
         <div class="download-card launcher">
-            <span class="icon"></span>
             <h3>VL Launcher</h3>
-            <div class="version"></div>
             <div class="desc">
                 Зручний лаунчер для швидкого запуску сервера<br>
                 з автоматичними оновленнями
@@ -271,9 +277,7 @@ footer {
         </div>
 
         <div class="download-card app">
-            <span class="icon"></span>
             <h3>VolyaCraft App</h3>
-            <div class="version"></div>
             <div class="desc">
                 Мобільний додаток для перегляду<br>
                 карти, чату та новин сервера
