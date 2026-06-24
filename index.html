@@ -153,6 +153,50 @@ button:hover {
 .allmc-btn { border-left: 3px solid #73ffda; }
 .Rule-btn { border-left: 3px solid #03A9F4; }
     
+/* Новий блок для лаунчера */
+.launcher-section {
+    margin: 40px 0 20px;
+}
+
+.launcher-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 25px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.launcher-buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 25px;
+}
+
+.launcher-btn {
+    padding: 18px 40px;
+    font-size: 1.3rem;
+    font-weight: 700;
+    border: none;
+    border-radius: 60px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: rgba(0, 0, 0, 0.25);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    min-width: 200px;
+    letter-spacing: 0.5px;
+    backdrop-filter: blur(4px);
+}
+
+.launcher-btn:hover {
+    transform: scale(1.06);
+    background: rgba(0, 0, 0, 0.4);
+    border-color: rgba(255, 255, 255, 0.6);
+}
+
+.google-btn { border-left: 5px solid #4285F4; }
+.itchio-btn { border-left: 5px solid #fa5c5c; }
+
 footer {
     padding: 15px;
     font-size: 0.95rem;
@@ -187,6 +231,16 @@ footer {
         font-size: 1rem;
         min-width: 140px;
     }
+
+    .launcher-title {
+        font-size: 1.6rem;
+    }
+
+    .launcher-btn {
+        padding: 14px 28px;
+        font-size: 1.1rem;
+        min-width: 160px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -217,6 +271,16 @@ footer {
         width: 100%;
         max-width: 300px;
     }
+
+    .launcher-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .launcher-btn {
+        width: 100%;
+        max-width: 280px;
+    }
 }
 </style>
 </head>
@@ -229,7 +293,7 @@ footer {
 </header>
 
 <div class="section">
-    <h2>📜 Про сервер</h2>
+    <h2>Про сервер</h2>
 
     <div class="description">
         VolyaCraft — український політичний майнкрафт сервер, де можна створювати
@@ -238,7 +302,7 @@ footer {
          <a href="https://discord.gg/Eek6hrQnk8" style="color: #ffaa00; font-weight: 600; box-shadow: #212121; ">Більше інформації у діскорді </a>
     </div>
 
-    <h2>🎮 Айпі для гри</h2>
+    <h2>Айпі для гри</h2>
     
     <div class="ip-container">
         <div class="ip-box" onclick="copyIP('volyacraft.pp.ua:20020')">
@@ -259,6 +323,15 @@ footer {
         <button class="map-btn" onclick="Map()">Мапа</button>
         <button class="Rule-btn" onclick="Rule()">Правила</button>
         <button class="disflip-btn" onclick="Monitors()">Ютубери</button>
+    </div>
+
+    <!-- НОВИЙ БЛОК: Встановити VL Launcher -->
+    <div class="launcher-section">
+        <div class="launcher-title">Встановити VL Launcher</div>
+        <div class="launcher-buttons">
+            <button class="launcher-btn google-btn" onclick="openGoogleDrive()">Гугл диск</button>
+            <button class="launcher-btn itchio-btn" onclick="openItchIo()">Itch.io</button>
+        </div>
     </div>
 </div>
     
@@ -297,6 +370,14 @@ function Map() {
 function Rule() {
     window.location.href = "Rule.html";
 } 
+
+function openGoogleDrive() {
+    window.open("https://drive.google.com/drive/folders/your-link-here", "_blank");
+}
+
+function openItchIo() {
+    window.open("https://your-itch-io-link.itch.io/", "_blank");
+}
 </script>
     
 <link rel="icon" type="image/png" href="favicon.png">
