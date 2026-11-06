@@ -62,11 +62,12 @@ header p {
     padding: 6px 20px;
     background: rgba(0, 0, 0, 0.15);
     border-radius: 50px;
-    margin-bottom: 15px;
+    margin-bottom: 25px;
 }
 
 .back-btn {
-    display: inline-block;
+    display: block;
+    margin: 0 auto;
     padding: 12px 28px;
     font-size: 1rem;
     font-weight: 600;
@@ -78,7 +79,8 @@ header p {
     color: white;
     border: 1px solid rgba(255, 255, 255, 0.2);
     text-decoration: none;
-    min-width: 160px;
+    min-width: 200px;
+    width: max-content;
 }
 
 .back-btn:hover {
@@ -254,7 +256,9 @@ footer {
 <header>
     <h1>Завантажити</h1>
     
-    <p>VL Launcher та додаток VolyaCraft</p>
+    <div>
+        <p>VL Launcher та додаток VolyaCraft</p>
+    </div>
     
     <a href="index.html" class="back-btn">← Повернутися на головну</a>
 </header>

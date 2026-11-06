@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ua">
+<html lang="uk">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -39,7 +39,6 @@ body::before {
     pointer-events: none;
     z-index: 0;
 }
-
 
 .donate-container {
     background: rgba(0, 0, 0, 0.15);
@@ -135,9 +134,63 @@ button:hover {
     margin: 20px auto;
     border-radius: 20px;
     border: 2px solid rgba(255, 255, 255, 0.2);
+    cursor: zoom-in;
+    transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
-/* Стиль для кейсів */
+.rank img:hover {
+    transform: scale(1.02);
+    border-color: rgba(255, 170, 0, 0.8);
+}
+
+.lightbox {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(5px);
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+    overflow: hidden;
+}
+
+.lightbox.active {
+    display: flex;
+}
+
+.lightbox img {
+    max-width: 100%;
+    max-height: 80vh;
+    border-radius: 10px;
+    box-shadow: 0 0 30px rgba(0,0,0,0.8);
+    object-fit: contain;
+    transition: transform 0.3s ease;
+    cursor: zoom-out;
+}
+
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: #fff;
+    font-size: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    line-height: 1;
+    z-index: 10000;
+}
+
+.close-btn:hover {
+    color: #ffaa00;
+}
+
 .rank:last-child {
     background: rgba(255, 170, 0, 0.1);
     border: 1px dashed rgba(255, 255, 255, 0.3);
@@ -198,70 +251,32 @@ footer {
 }
 
 @media (max-width: 768px) {
-    h1 {
-        font-size: 3rem;
-    }
+    h1 { font-size: 3rem; }
+    .donate-container { padding: 20px; }
+    .rank h2 { font-size: 2.2rem; }
+    .price-item { font-size: 1rem; padding: 8px 16px; }
+    .case-item { flex-direction: column; gap: 8px; padding: 12px; }
     
-    .donate-container {
-        padding: 20px;
+    .close-btn {
+        top: 10px;
+        right: 20px;
+        font-size: 40px;
     }
-    
-    .rank h2 {
-        font-size: 2.2rem;
-    }
-    
-    .price-item {
-        font-size: 1rem;
-        padding: 8px 16px;
-    }
-    
-    .case-item {
-        flex-direction: column;
-        gap: 8px;
-        padding: 12px;
+    .lightbox img {
+        max-height: 75vh;
     }
 }
 
 @media (max-width: 480px) {
-    h1 {
-        font-size: 2.2rem;
-    }
-    
-    .donate-container {
-        padding: 15px;
-    }
-    
-    .rank {
-        padding: 20px;
-    }
-    
-    .rank h2 {
-        font-size: 1.8rem;
-    }
-    
-    .button-group {
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    button {
-        width: 100%;
-        max-width: 260px;
-    }
-    
-    .price-list {
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .price-item {
-        width: 100%;
-        max-width: 260px;
-    }
-    
-    .case-item {
-        width: 100%;
-    }
+    h1 { font-size: 2.2rem; }
+    .donate-container { padding: 15px; }
+    .rank { padding: 20px; }
+    .rank h2 { font-size: 1.8rem; }
+    .button-group { flex-direction: column; align-items: center; }
+    button { width: 100%; max-width: 260px; }
+    .price-list { flex-direction: column; align-items: center; }
+    .price-item { width: 100%; max-width: 260px; }
+    .case-item { width: 100%; }
 }
 </style>
 </head>
@@ -282,8 +297,8 @@ footer {
         <span class="price-item"><strong>3 місяці</strong> — 105 грн</span>
         <span class="price-item"><strong>Назавжди</strong> — 135 грн</span>
     </div>
-    <img src="images/kozak.webp" alt="Козак" onerror="this.src='https://via.placeholder.com/450x250?text=Козак'">
-    <img src="images/imagekozak.png" alt="Козак" onerror="this.src='https://via.placeholder.com/450x250?text=Козак'">
+    <img src="images/kozak.webp" alt="Козак" onclick="openLightbox(this)" onerror="this.src='https://via.placeholder.com/450x250?text=Козак'">
+    <img src="images/imagekozak.webp" alt="Козак" onclick="openLightbox(this)" onerror="this.src='https://via.placeholder.com/450x250?text=Козак'">
 </div>
 
 <div class="rank">
@@ -292,8 +307,8 @@ footer {
         <span class="price-item"><strong>3 місяці</strong> — 145 грн</span>
         <span class="price-item"><strong>Назавжди</strong> — 165 грн</span>
     </div>
-    <img src="images/sokil.webp" alt="Сокіл" onerror="this.src='https://via.placeholder.com/450x250?text=Сокіл'">
-    <img src="images/imagesokil.png" alt="Козак" onerror="this.src='https://via.placeholder.com/450x250?text=Козак'">
+    <img src="images/sokil.webp" alt="Сокіл" onclick="openLightbox(this)" onerror="this.src='https://via.placeholder.com/450x250?text=Сокіл'">
+    <img src="images/imagesokil.webp" alt="Сокіл" onclick="openLightbox(this)" onerror="this.src='https://via.placeholder.com/450x250?text=Сокіл'">
 </div>
 
 <div class="rank">
@@ -302,8 +317,8 @@ footer {
         <span class="price-item"><strong>3 місяці</strong> — 205 грн</span>
         <span class="price-item"><strong>Назавжди</strong> — 225 грн</span>
     </div>
-    <img src="images/litopusec.webp" alt="Літописець" onerror="this.src='https://via.placeholder.com/450x250?text=Літописець'">
-    <img src="images/imagelitopisech.png" alt="Козак" onerror="this.src='https://via.placeholder.com/450x250?text=Козак'">
+    <img src="images/litopusec.webp" alt="Літописець" onclick="openLightbox(this)" onerror="this.src='https://via.placeholder.com/450x250?text=Літописець'">
+    <img src="images/imagelitopisech.webp" alt="Літописець" onclick="openLightbox(this)" onerror="this.src='https://via.placeholder.com/450x250?text=Літописець'">
 </div>
 
 <div class="rank">
@@ -312,8 +327,8 @@ footer {
         <span class="price-item"><strong>3 місяці</strong> — 235 грн</span>
         <span class="price-item"><strong>Назавжди</strong> — 255 грн</span>
     </div>
-    <img src="images/osavyl.webp" alt="Осавул" onerror="this.src='https://via.placeholder.com/450x250?text=Осавул'">
-    <img src="images/imageosavyl.png" alt="Козак" onerror="this.src='https://via.placeholder.com/450x250?text=Козак'">
+    <img src="images/osavyl.webp" alt="Осавул" onclick="openLightbox(this)" onerror="this.src='https://via.placeholder.com/450x250?text=Осавул'">
+    <img src="images/imageosavyl.webp" alt="Осавул" onclick="openLightbox(this)" onerror="this.src='https://via.placeholder.com/450x250?text=Осавул'">
 </div>
 
 <div class="rank">
@@ -322,8 +337,8 @@ footer {
         <span class="price-item"><strong>3 місяці</strong> — 295 грн</span>
         <span class="price-item"><strong>Назавжди</strong> — 315 грн</span>
     </div>
-    <img src="images/otaman.webp" alt="Отаман" onerror="this.src='https://via.placeholder.com/450x250?text=Отаман'">
-    <img src="images/imageotaman.png" alt="Козак" onerror="this.src='https://via.placeholder.com/450x250?text=Козак'">
+    <img src="images/otaman.webp" alt="Отаман" onclick="openLightbox(this)" onerror="this.src='https://via.placeholder.com/450x250?text=Отаман'">
+    <img src="images/imageotaman.webp" alt="Отаман" onclick="openLightbox(this)" onerror="this.src='https://via.placeholder.com/450x250?text=Отаман'">
 </div>
 
 <div class="rank">
@@ -332,8 +347,8 @@ footer {
         <span class="price-item"><strong>3 місяці</strong> — 355 грн</span>
         <span class="price-item"><strong>Назавжди</strong> — 375 грн</span>
     </div>
-    <img src="images/smyrfik.webp" alt="Смурфік" onerror="this.src='https://via.placeholder.com/450x250?text=Смурфік'">
-    <img src="images/imagesmyrfik.png" alt="Козак" onerror="this.src='https://via.placeholder.com/450x250?text=Козак'">
+    <img src="images/smyrfik.webp" alt="Смурфік" onclick="openLightbox(this)" onerror="this.src='https://via.placeholder.com/450x250?text=Смурфік'">
+    <img src="images/imagesmyrfik.webp" alt="Смурфік" onclick="openLightbox(this)" onerror="this.src='https://via.placeholder.com/450x250?text=Смурфік'">
 </div>
 
 <div class="rank">
@@ -372,6 +387,11 @@ footer {
 
 </div>
 
+<div id="lightbox" class="lightbox" onclick="closeLightbox()">
+    <span class="close-btn" onclick="closeLightbox()">&times;</span>
+    <img id="lightbox-img" src="" alt="Збільшене зображення" onclick="event.stopPropagation()">
+</div>
+
 <script>
 function Back() {
     window.location.href = "index.html";
@@ -379,11 +399,27 @@ function Back() {
 function Buy() {
     window.location.href = "buy.html";
 }
+
+function openLightbox(imgElement) {
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    
+    lightboxImg.src = imgElement.src;
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+    const lightbox = document.getElementById('lightbox');
+    
+    lightbox.classList.remove('active');
+    document.body.style.overflow = 'auto';
+    
+    setTimeout(() => {
+        document.getElementById('lightbox-img').src = "";
+    }, 300);
+}
 </script>
 
 </body>
 </html>
-
-
-
-

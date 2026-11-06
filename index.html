@@ -259,7 +259,6 @@ footer {
         <button class="tytor-btn" onclick="Tytor()">Тутор</button>
         <button class="map-btn" onclick="Map()">Мапа</button>
         <button class="Rule-btn" onclick="Rule()">Правила</button>
-        <button class="disflip-btn" onclick="Monitors()">Ютубери</button>
         <button class="launcher-nav-btn" onclick="goToLauncher()">Додатки</button>
     </div>
 </div>
@@ -271,26 +270,22 @@ footer {
 <script>
 function copyIP(ip) {
     navigator.clipboard.writeText(ip).then(() => {
-        alert("✅ Скопійовано: " + ip);
+        alert("Скопійовано: " + ip);
     }).catch(() => {
-        alert("❌ Помилка копіювання");
+        alert("Помилка копіювання");
     });
 }
 
 function joinDiscord() {
     window.open("https://discord.gg/Eek6hrQnk8", "_blank");
 }
-
-function Monitors() {
-    window.location.href = "youtubers.html";
-}   
-    
+  
 function Donate() {
     window.location.href = "Donate.html";
 }
     
 function Tytor() {
-    window.open("https://youtu.be/WKkAdRnHzRs?si=cv3W3jtCgLWnF0Jh YouTube", "_blank");
+    window.location.href = "tutor.html";
 }  
     
 function Map() {

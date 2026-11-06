@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VolyaCraft | Туторіал</title>
+<link rel="icon" type="image/x-icon" href="images/ava.ico">
+
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Segoe UI', 'Inter', system-ui, sans-serif;
+    min-height: 100vh;
+    color: white;
+    text-align: center;
+    background: linear-gradient(to top, 
+        #ffaa00 0%, 
+        #ffaa00 15%, 
+        #e6a100 25%, 
+        #cc9900 35%, 
+        #4da6ff 60%, 
+        #0057b7 85%, 
+        #003d7a 100%
+    );
+    background-attachment: fixed;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.2);
+    pointer-events: none;
+    z-index: 0;
+}
+
+header {
+    padding: 60px 20px 30px;
+    position: relative;
+    z-index: 1;
+}
+
+header h1 {
+    font-size: 4.5rem;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-weight: 800;
+}
+
+header p {
+    font-size: 1.4rem;
+    opacity: 0.95;
+    margin-bottom: 15px;
+    display: inline-block;
+    padding: 8px 25px;
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 50px;
+}
+
+.nav-container {
+    margin-bottom: 30px;
+    position: relative;
+    z-index: 1;
+}
+
+.back-btn { 
+    padding: 12px 28px;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    background: rgba(0, 0, 0, 0.2);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-left: 3px solid #5865F2; 
+}
+
+.back-btn:hover {
+    transform: scale(1.06);
+    background: rgba(0, 0, 0, 0.35);
+}
+
+.content-container {
+    max-width: 900px;
+    margin: 0 auto 40px;
+    padding: 0 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%; /* Співвідношення 16:9 для відео */
+    height: 0;
+    overflow: hidden;
+    border-radius: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    margin-bottom: 30px;
+}
+
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.text-box {
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    padding: 30px;
+    text-align: left;
+    backdrop-filter: blur(5px);
+}
+
+.text-box h2 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: #ffaa00;
+    text-align: center;
+}
+
+.text-box p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 15px;
+    opacity: 0.95;
+}
+
+.text-box ul {
+    margin-left: 20px;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.text-box li {
+    margin-bottom: 10px;
+}
+
+footer {
+    padding: 15px;
+    font-size: 0.95rem;
+    opacity: 0.9;
+    position: relative;
+    z-index: 1;
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    header h1 { font-size: 3rem; }
+    header p { font-size: 1.2rem; }
+    
+    .video-wrapper {
+        border-radius: 15px;
+    }
+    
+    .text-box {
+        padding: 20px;
+    }
+    
+    .text-box h2 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 { font-size: 2.2rem; }
+    header p { font-size: 1rem; }
+    
+    .text-box {
+        padding: 15px;
+    }
+    
+    .text-box p, .text-box ul {
+        font-size: 1rem;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Туторіал</h1>
+    <p>Інструкції та гайди для VolyaCraft</p>
+</header>
+
+<div class="nav-container">
+    <button class="back-btn" onclick="goHome()">← На головну</button>
+</div>
+
+<div class="content-container">
+    
+    <div class="video-wrapper">
+        <iframe 
+            src="https://www.youtube.com/embed/WKkAdRnHzRs" 
+            title="YouTube video player" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+        </iframe>
+    </div>
+
+    <div class="text-box">
+        <h2>Механіки по простому</h2>
+        <p>
+            Тут ви зрозумієте всі майже механіки цього сервера, без яких ви не зможете нормально розвинутися у велике місто.
+        </p>
+        
+        <h1>Заводи і фабрики</h1>
+        <p>Все достатньо просто. Є список заводів і фабрик у дискорд каналі механіки, які можна буде будувати. Ось як все зробити:</p>
+        <ul>
+            <li><strong>Крок 1:</strong> Обираємо той завод чи фабрику, яка нам сподобалась.</li>
+            <li><strong>Крок 2:</strong> Знаходимо місце в місті десь мінімум на 2 чанки.</li>
+            <li><strong>Крок 3:</strong> Будуємо завод чи фабрику, що ви там обрали.</li>
+            <li><strong>Крок 4:</strong> Після того, як побудували заходимо у дискорд у каналі тікети обираємо тікет "Реєстрація Рп споруди...".</li>
+            <li><strong>Крок 5:</strong> Заповнюємо формулу. Все те саме, але в графі що за рп споруда пишемо Завод/Фабрика і те, що воно виготовляє.</li>
+            <li><strong>Крок 6:</strong> Після того, як ви заповнили форму, чекаємо на перевірку. І тоді вам зареєструють цю фабрику чи завод.</li>
+            <li><strong>Крок 7:</strong> Тепер ви будете отримувати у скриню ті предмети, які виготовляє ваша фабрика чи завод раз на 6 годин.</li>
+        </ul>
+        
+    </div>
+
+</div>
+
+<footer>
+    © 2025 - 2026 VolyaCraft | Всі права захищені
+</footer>
+
+<script>
+function goHome() {
+    window.location.href = "index.html";
+}
+</script>
+
+</body>
+</html>
