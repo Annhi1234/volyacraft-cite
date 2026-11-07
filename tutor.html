@@ -265,6 +265,124 @@ header p {
     color: #ffd166;
 }
 
+.brewery-images {
+    display: grid;
+    gap: 16px;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.brewery-images figure {
+    margin: 0;
+}
+
+.brewery-image-button {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    border-radius: 12px;
+    background: transparent;
+    cursor: zoom-in;
+}
+
+.brewery-image-button:focus-visible {
+    outline: 3px solid #ffd166;
+    outline-offset: 3px;
+}
+
+.brewery-image-button img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 0;
+    border-radius: 12px;
+}
+
+.brewery-image-dialog {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    max-width: none;
+    height: 100vh;
+    height: 100dvh;
+    max-height: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    overscroll-behavior: contain;
+    border: 0;
+    border-radius: 0;
+    background: rgba(0, 0, 0, 0.85);
+    color: white;
+}
+
+.brewery-image-dialog:not([open]) {
+    display: none;
+}
+
+.brewery-image-dialog.is-zoomed {
+    display: block;
+    padding: calc(60px + env(safe-area-inset-top)) 12px calc(20px + env(safe-area-inset-bottom));
+    overflow: auto;
+}
+
+.brewery-image-dialog::backdrop {
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(5px);
+}
+
+.brewery-image-dialog img {
+    display: block;
+    width: auto;
+    max-width: min(95vw, 1400px);
+    max-height: calc(100dvh - 40px);
+    margin: 0;
+    border: 0;
+    border-radius: 10px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+    object-fit: contain;
+    cursor: zoom-in;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+.brewery-image-dialog img[data-zoom-level="1"] {
+    width: max(150vw, 600px);
+    max-width: none;
+    max-height: none;
+    cursor: grab;
+    touch-action: none;
+}
+
+.brewery-image-dialog img.is-panning {
+    cursor: grabbing;
+}
+
+.brewery-image-dialog-close {
+    position: fixed;
+    top: calc(8px + env(safe-area-inset-top));
+    right: calc(12px + env(safe-area-inset-right));
+    z-index: 1;
+    width: 36px;
+    height: 36px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.3);
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.brewery-images figcaption {
+    margin-top: 8px;
+    color: #ffd166;
+    font-size: 0.95rem;
+}
+
 footer {
     padding: 15px;
     font-size: 0.95rem;
@@ -277,6 +395,8 @@ footer {
 @media (max-width: 768px) {
     header h1 { font-size: 3rem; }
     header p { font-size: 1.2rem; }
+    body { background-attachment: scroll; }
+    .text-box { backdrop-filter: none; }
     
     .video-wrapper {
         border-radius: 15px;
@@ -361,7 +481,7 @@ footer {
                 </div>
             </details>
         </section>
-        
+
         <section class="mechanic-section">
             <details class="mechanics-accordion">
                 <summary>
@@ -407,9 +527,62 @@ footer {
             </details>
         </section>
 
+        <section class="mechanic-section">
+            <details class="mechanics-accordion">
+                <summary>
+                    <span class="accordion-title">Картинки</span>
+                    <span class="accordion-arrow" aria-hidden="true">⌄</span>
+                </summary>
+                <div class="mechanic-content">
+                    <p>Чудова механіка, для того щоб поставити свій улюблений мем чи картинку.</p>
+                    <ol class="steps">
+                        <li>Почнемо з того, що оберемо картинку.</li>
+                        <li>Далі зайдем на сайт: https://catbox.moe/ .</li>
+                        <li>Вантажимо сюди нашу картинку і копіюємо посилання.</li>
+                        <li>Повертаємось на сервер і пишемо команду /imageframe create назва url ширина довжина. Прости вписуємо, як на прикладі /imageframe create 1 httsp:/731052884838/ 3 3.</li>
+                        <li>Якщо у вас в інвентарі буде достатньо карт то всі вони закрасяться у пазл вашої картинки. Якщо не достатньо напише помилку до чату.</li>
+                        <li>Якщо все зробили правильно ви молодці і отримали свою картинку!</li>
+                    </ol>
+                    <p class="mechanic-note"><strong>Примітка:</strong> За додатковими роз'ясненнями звертайтеся до тікета "Допомога", там вам допоможуть і все роз'яснять!</p>
+                </div>
+            </details>
+        </section>
+
+        <section class="mechanic-section">
+            <details class="mechanics-accordion">
+                <summary>
+                    <span class="accordion-title">BreweryX</span>
+                    <span class="accordion-arrow" aria-hidden="true">⌄</span>
+                </summary>
+                <div class="mechanic-content">
+                    <p>Механіка варіння всякого добра і не добра. Для цього вам досить подивитися відео чи фандоми по BreweryX із головного це вам знадобиться котел, вогнище і відра з водою, а також рецепт того, що ви хочете зварити. Всі рецепти є нище</p>
+                    <p>Натисніть на рецепт, щоб відкрити його. У вікні перегляду натискайте на зображення для зміни масштабу, а збільшене зображення перетягуйте мишкою або пальцем.</p>
+                    <div class="brewery-images">
+                        <figure>
+                            <button class="brewery-image-button" type="button" aria-label="Збільшити першу частину рецептів BreweryX">
+                                <img src="images/Br1.webp" alt="Перша частина рецептів напоїв BreweryX" width="691" height="424" loading="lazy" decoding="async">
+                            </button>
+                            <figcaption>Перша частина рецептів</figcaption>
+                        </figure>
+                        <figure>
+                            <button class="brewery-image-button" type="button" aria-label="Збільшити другу частину рецептів BreweryX">
+                                <img src="images/Br2.webp" alt="Друга частина рецептів напоїв BreweryX" width="706" height="433" loading="lazy" decoding="async">
+                            </button>
+                            <figcaption>Друга частина рецептів</figcaption>
+                        </figure>
+                    </div>
+                </div>
+            </details>
+        </section>
+
     </div>
 
 </div>
+
+<dialog class="brewery-image-dialog" aria-label="Збільшене зображення рецептів BreweryX">
+    <button class="brewery-image-dialog-close" type="button" aria-label="Закрити">×</button>
+    <img alt="" draggable="false">
+</dialog>
 
 <footer>
     © 2025 - 2026 VolyaCraft | Всі права захищені
@@ -419,6 +592,96 @@ footer {
 function goHome() {
     window.location.href = "index.html";
 }
+
+const breweryImageDialog = document.querySelector(".brewery-image-dialog");
+const breweryDialogImage = breweryImageDialog.querySelector("img");
+
+document.querySelectorAll(".brewery-image-button").forEach((button) => {
+    button.addEventListener("click", () => {
+        const image = button.querySelector("img");
+        breweryDialogImage.src = image.src;
+        breweryDialogImage.alt = image.alt;
+        breweryDialogImage.dataset.zoomLevel = "0";
+        breweryImageDialog.classList.remove("is-zoomed");
+        breweryImageDialog.scrollTo(0, 0);
+        breweryImageDialog.showModal();
+    });
+});
+
+breweryImageDialog.querySelector(".brewery-image-dialog-close").addEventListener("click", () => {
+    breweryImageDialog.close();
+});
+
+breweryImageDialog.addEventListener("click", (event) => {
+    if (event.target === breweryImageDialog) {
+        breweryImageDialog.close();
+    }
+});
+
+let breweryPanStart = null;
+let breweryPanMoved = false;
+
+breweryDialogImage.addEventListener("pointerdown", (event) => {
+    if (breweryDialogImage.dataset.zoomLevel === "0") return;
+
+    breweryPanStart = {
+        pointerId: event.pointerId,
+        x: event.clientX,
+        y: event.clientY,
+        scrollLeft: breweryImageDialog.scrollLeft,
+        scrollTop: breweryImageDialog.scrollTop
+    };
+    breweryPanMoved = false;
+    breweryDialogImage.setPointerCapture(event.pointerId);
+});
+
+breweryDialogImage.addEventListener("pointermove", (event) => {
+    if (!breweryPanStart || event.pointerId !== breweryPanStart.pointerId) return;
+
+    const deltaX = event.clientX - breweryPanStart.x;
+    const deltaY = event.clientY - breweryPanStart.y;
+    if (Math.abs(deltaX) > 3 || Math.abs(deltaY) > 3) {
+        breweryPanMoved = true;
+        breweryDialogImage.classList.add("is-panning");
+    }
+
+    if (breweryPanMoved) {
+        breweryImageDialog.scrollLeft = breweryPanStart.scrollLeft - deltaX;
+        breweryImageDialog.scrollTop = breweryPanStart.scrollTop - deltaY;
+    }
+});
+
+breweryDialogImage.addEventListener("pointerup", () => {
+    breweryPanStart = null;
+    breweryDialogImage.classList.remove("is-panning");
+});
+
+breweryDialogImage.addEventListener("pointercancel", () => {
+    breweryPanStart = null;
+    breweryPanMoved = false;
+    breweryDialogImage.classList.remove("is-panning");
+});
+
+breweryDialogImage.addEventListener("click", () => {
+    if (breweryPanMoved) {
+        breweryPanMoved = false;
+        return;
+    }
+
+    const nextZoomLevel = breweryDialogImage.dataset.zoomLevel === "0" ? 1 : 0;
+    breweryDialogImage.dataset.zoomLevel = String(nextZoomLevel);
+    breweryImageDialog.classList.toggle("is-zoomed", nextZoomLevel > 0);
+    if (nextZoomLevel === 0) breweryImageDialog.scrollTo(0, 0);
+});
+
+breweryImageDialog.addEventListener("close", () => {
+    breweryPanStart = null;
+    breweryPanMoved = false;
+    breweryDialogImage.classList.remove("is-panning");
+    breweryImageDialog.classList.remove("is-zoomed");
+    breweryDialogImage.dataset.zoomLevel = "0";
+    breweryDialogImage.removeAttribute("src");
+});
 </script>
 
 </body>
