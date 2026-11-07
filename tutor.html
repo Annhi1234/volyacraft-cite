@@ -113,37 +113,156 @@ header p {
 }
 
 .text-box {
-    background: rgba(0, 0, 0, 0.25);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.18);
     border-radius: 20px;
-    padding: 30px;
+    padding: clamp(18px, 3vw, 28px);
     text-align: left;
     backdrop-filter: blur(5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.22);
 }
 
 .text-box h2 {
-    font-size: 1.8rem;
-    margin-bottom: 15px;
-    color: #ffaa00;
+    font-size: clamp(1.6rem, 3vw, 2rem);
+    margin-bottom: 12px;
+    color: #ffd166;
+    text-align: center;
+}
+
+.text-box > p {
+    max-width: 700px;
+    margin: 0 auto 22px;
     text-align: center;
 }
 
 .text-box p {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     line-height: 1.7;
-    margin-bottom: 15px;
+    margin-bottom: 18px;
     opacity: 0.95;
 }
 
-.text-box ul {
-    margin-left: 20px;
-    margin-bottom: 15px;
-    font-size: 1.1rem;
+.mechanic-section + .mechanic-section {
+    margin-top: 12px;
+}
+
+.mechanics-accordion summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 14px 18px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-left: 3px solid #ffaa00;
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.18);
+    color: white;
+    cursor: pointer;
+    list-style: none;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.mechanics-accordion summary::-webkit-details-marker {
+    display: none;
+}
+
+.mechanics-accordion summary:hover,
+.mechanics-accordion[open] summary {
+    background: rgba(0, 0, 0, 0.32);
+    border-color: rgba(255, 255, 255, 0.32);
+    border-left-color: #ffd166;
+}
+
+.mechanics-accordion summary:focus-visible {
+    outline: 3px solid #ffd166;
+    outline-offset: 3px;
+}
+
+.accordion-title {
+    font-size: clamp(1.15rem, 2.5vw, 1.4rem);
+    font-weight: 700;
+}
+
+.accordion-arrow {
+    flex: 0 0 auto;
+    color: #ffd166;
+    font-size: 1.6rem;
+    line-height: 0.8;
+    transition: transform 0.25s ease;
+}
+
+.mechanics-accordion[open] .accordion-arrow {
+    transform: rotate(180deg);
+}
+
+.mechanic-content {
+    padding: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-top: 0;
+    border-radius: 0 0 12px 12px;
+    background: rgba(0, 0, 0, 0.12);
+}
+
+.mechanics-accordion:not([open]) > .mechanic-content {
+    display: none;
+}
+
+.mechanics-accordion[open] summary {
+    border-radius: 12px 12px 0 0;
+}
+
+.steps {
+    counter-reset: step;
+    display: grid;
+    gap: 9px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: 1.02rem;
     line-height: 1.6;
 }
 
-.text-box li {
-    margin-bottom: 10px;
+.steps li {
+    counter-increment: step;
+    display: grid;
+    grid-template-columns: 34px minmax(0, 1fr);
+    align-items: start;
+    gap: 12px;
+    padding: 10px 12px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.045);
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.steps li::before {
+    content: counter(step);
+    display: grid;
+    place-items: center;
+    width: 30px;
+    height: 30px;
+    border: 1px solid rgba(255, 209, 102, 0.55);
+    border-radius: 50%;
+    background: rgba(255, 170, 0, 0.14);
+    color: #ffd166;
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.steps li:hover {
+    transform: translateX(3px);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.mechanic-note {
+    margin: 18px 0 0 !important;
+    padding: 12px 14px;
+    border-left: 3px solid #ffaa00;
+    background: rgba(0, 0, 0, 0.16);
+    text-align: left !important;
+}
+
+.mechanic-note strong {
+    color: #ffd166;
 }
 
 footer {
@@ -163,25 +282,32 @@ footer {
         border-radius: 15px;
     }
     
-    .text-box {
-        padding: 20px;
-    }
-    
-    .text-box h2 {
-        font-size: 1.5rem;
-    }
+    .text-box { padding: 20px; }
 }
 
 @media (max-width: 480px) {
     header h1 { font-size: 2.2rem; }
     header p { font-size: 1rem; }
     
-    .text-box {
-        padding: 15px;
-    }
+    .text-box { padding: 15px; }
+
+    .mechanic-content { padding: 14px 10px; }
+
+    .mechanics-accordion summary { padding: 12px 14px; }
     
-    .text-box p, .text-box ul {
+    .text-box p, .steps {
         font-size: 1rem;
+    }
+
+    .steps li {
+        grid-template-columns: 30px minmax(0, 1fr);
+        gap: 9px;
+        padding: 9px 8px;
+    }
+
+    .steps li::before {
+        width: 27px;
+        height: 27px;
     }
 }
 </style>
@@ -215,18 +341,72 @@ footer {
             Тут ви зрозумієте всі майже механіки цього сервера, без яких ви не зможете нормально розвинутися у велике місто.
         </p>
         
-        <h1>Заводи і фабрики</h1>
-        <p>Все достатньо просто. Є список заводів і фабрик у дискорд каналі механіки, які можна буде будувати. Ось як все зробити:</p>
-        <ul>
-            <li><strong>Крок 1:</strong> Обираємо той завод чи фабрику, яка нам сподобалась.</li>
-            <li><strong>Крок 2:</strong> Знаходимо місце в місті десь мінімум на 2 чанки.</li>
-            <li><strong>Крок 3:</strong> Будуємо завод чи фабрику, що ви там обрали.</li>
-            <li><strong>Крок 4:</strong> Після того, як побудували заходимо у дискорд у каналі тікети обираємо тікет "Реєстрація Рп споруди...".</li>
-            <li><strong>Крок 5:</strong> Заповнюємо формулу. Все те саме, але в графі що за рп споруда пишемо Завод/Фабрика і те, що воно виготовляє.</li>
-            <li><strong>Крок 6:</strong> Після того, як ви заповнили форму, чекаємо на перевірку. І тоді вам зареєструють цю фабрику чи завод.</li>
-            <li><strong>Крок 7:</strong> Тепер ви будете отримувати у скриню ті предмети, які виготовляє ваша фабрика чи завод раз на 6 годин.</li>
-        </ul>
+        <section class="mechanic-section">
+            <details class="mechanics-accordion">
+                <summary>
+                    <span class="accordion-title">Заводи і фабрики</span>
+                    <span class="accordion-arrow" aria-hidden="true">⌄</span>
+                </summary>
+                <div class="mechanic-content">
+                    <p>Все достатньо просто. Є список заводів і фабрик у дискорд каналі механіки, які можна буде будувати. Ось як все зробити:</p>
+                    <ol class="steps">
+                        <li>Обираємо той завод чи фабрику, яка нам сподобалась.</li>
+                        <li>Знаходимо місце в місті десь мінімум на 2 чанки.</li>
+                        <li>Будуємо завод чи фабрику, що ви там обрали.</li>
+                        <li>Після того, як побудували заходимо у дискорд у каналі тікети обираємо тікет "Рейстрація Заводу/Фабрики".</li>
+                        <li>Заповнюємо форму чітко по існтрукції, які написані будуть у формі</li>
+                        <li>Після того, як ви заповнили форму, чекаємо на перевірку. І тоді вам зареєструють цю фабрику чи завод.</li>
+                        <li>Тепер ви будете отримувати у скриню ті предмети, які виготовляє ваша фабрика чи завод раз на 6 годин.</li>
+                    </ol>
+                </div>
+            </details>
+        </section>
         
+        <section class="mechanic-section">
+            <details class="mechanics-accordion">
+                <summary>
+                    <span class="accordion-title">Рп споруди та Пам'ятники</span>
+                    <span class="accordion-arrow" aria-hidden="true">⌄</span>
+                </summary>
+                <div class="mechanic-content">
+                    <p>Сама механіка легенька, тому зрозуміти буде легко. Ось вам пошагова інструкція, щоб легше зрозуміти</p>
+                    <p>Але варто уточнити, що всього на місто можна побудувати 3 рп споруди і 2 пам'ятника. А кастомну тілько 1 з цих трьох!</p>
+                    <ol class="steps">
+                        <li>Заходимо на карту міста і дивимось у, якій області лежить ваше місто.</li>
+                        <li>Після цього відкриваємо інтернет і дивимось, якісь музеї, парки чи історичні будівлі, або ж пам'ятники з цієї області.</li>
+                        <li>Шукаємо місце для побудови, мінімум 9 чанків для рп споруди і 4 для пам'ятника.</li>
+                        <li>Після того, як побудували заходимо у дискорд у каналі тікети обираємо тікет "Рейстрація Рп споруди".</li>
+                        <li>Заповнюємо форму чітко по існтрукції, які написані будуть у формі.</li>
+                        <li>Після того, як ви заповнили форму, чекаємо на перевірку. І тоді вам зареєструють цю рп споруду чи пам'ятник.</li>
+                        <li>Тепер ви будете отримувати раз на день фіксовану плату в казну міста.</li>
+                    </ol>
+                    <p class="mechanic-note"><strong>Додатково:</strong> Якщо ж ви хочете побудувати кастомну рп споруду, перші два кроки пропускаєте, і будуєте як вам заманеться.</p>
+                </div>
+            </details>
+        </section>
+
+        <section class="mechanic-section">
+            <details class="mechanics-accordion">
+                <summary>
+                    <span class="accordion-title">Форпости</span>
+                    <span class="accordion-arrow" aria-hidden="true">⌄</span>
+                </summary>
+                <div class="mechanic-content">
+                    <p>Цікава механіка з, якою повинен бути ознайомлений кожен гравець.</p>
+                    <ol class="steps">
+                        <li>Найперше пишемо команду у чат /warp Марс.</li>
+                        <li>Після цього ми попадаємо на світ Марсу.</li>
+                        <li>Тепер по мапі шукаємо споруди, які знаходяться на марсі. Щоб поміняти світ зправа по середині буде стрілочка і там обираємо просто мапу Марсу.</li>
+                        <li>Ну і звісно ж тепер відправляємся до форпоста.</li>
+                        <li>Знайшовши форпост, заходимо у нього і він нас вітає.</li>
+                        <li>Залишається тілько підготуватися до битви і прописати /outposts attcak.</li>
+                        <li>Відбийте всі атаки і заберіть свою винагороду у скрині!</li>
+                    </ol>
+                    <p class="mechanic-note"><strong>Примітка:</strong> Кожен форпсот має свою складність і свою кількість предметів чи цінність!</p>
+                </div>
+            </details>
+        </section>
+
     </div>
 
 </div>
