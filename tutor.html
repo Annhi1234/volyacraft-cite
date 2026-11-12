@@ -291,7 +291,7 @@ header p {
     margin: 0;
 }
 
-.brewery-image-button {
+.zoomable-image-button {
     display: block;
     width: 100%;
     padding: 0;
@@ -301,12 +301,12 @@ header p {
     cursor: zoom-in;
 }
 
-.brewery-image-button:focus-visible {
+.zoomable-image-button:focus-visible {
     outline: 3px solid #ffd166;
     outline-offset: 3px;
 }
 
-.brewery-image-button img {
+.zoomable-image-button img {
     display: block;
     width: 100%;
     height: auto;
@@ -314,7 +314,52 @@ header p {
     border-radius: 12px;
 }
 
-.brewery-image-dialog {
+.drone-images {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    max-width: 700px;
+    margin: 20px auto 0;
+}
+
+.drone-images figure {
+    margin: 0;
+}
+
+.drone-image-button {
+    aspect-ratio: 1;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: white;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.drone-image-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 26px rgba(0, 0, 0, 0.3);
+}
+
+.drone-image-button img {
+    height: 100%;
+    object-fit: contain;
+}
+
+.drone-images figcaption {
+    margin-top: 8px;
+    color: #ffd166;
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.drone-gallery-title {
+    margin: 24px 0 0;
+    color: #ffd166;
+    font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+    text-align: center;
+}
+
+.zoomable-image-dialog {
     position: fixed;
     inset: 0;
     display: flex;
@@ -335,22 +380,22 @@ header p {
     color: white;
 }
 
-.brewery-image-dialog:not([open]) {
+.zoomable-image-dialog:not([open]) {
     display: none;
 }
 
-.brewery-image-dialog.is-zoomed {
+.zoomable-image-dialog.is-zoomed {
     display: block;
     padding: calc(60px + env(safe-area-inset-top)) 12px calc(20px + env(safe-area-inset-bottom));
     overflow: auto;
 }
 
-.brewery-image-dialog::backdrop {
+.zoomable-image-dialog::backdrop {
     background: rgba(0, 0, 0, 0.85);
     backdrop-filter: blur(5px);
 }
 
-.brewery-image-dialog img {
+.zoomable-image-dialog img {
     display: block;
     width: auto;
     max-width: min(95vw, 1400px);
@@ -365,7 +410,7 @@ header p {
     -webkit-user-drag: none;
 }
 
-.brewery-image-dialog img[data-zoom-level="1"] {
+.zoomable-image-dialog img[data-zoom-level="1"] {
     width: max(150vw, 600px);
     max-width: none;
     max-height: none;
@@ -373,11 +418,11 @@ header p {
     touch-action: none;
 }
 
-.brewery-image-dialog img.is-panning {
+.zoomable-image-dialog img.is-panning {
     cursor: grabbing;
 }
 
-.brewery-image-dialog-close {
+.zoomable-image-dialog-close {
     position: fixed;
     top: calc(8px + env(safe-area-inset-top));
     right: calc(12px + env(safe-area-inset-right));
@@ -574,13 +619,13 @@ footer {
                     <p>Натисніть на рецепт, щоб відкрити його. У вікні перегляду натискайте на зображення для зміни масштабу, а збільшене зображення перетягуйте мишкою або пальцем.</p>
                     <div class="brewery-images">
                         <figure>
-                            <button class="brewery-image-button" type="button" aria-label="Збільшити першу частину рецептів BreweryX">
+                            <button class="zoomable-image-button" type="button" aria-label="Збільшити першу частину рецептів BreweryX">
                                 <img src="images/Br1.webp" alt="Перша частина рецептів напоїв BreweryX" width="691" height="424" loading="lazy" decoding="async">
                             </button>
                             <figcaption>Перша частина рецептів</figcaption>
                         </figure>
                         <figure>
-                            <button class="brewery-image-button" type="button" aria-label="Збільшити другу частину рецептів BreweryX">
+                            <button class="zoomable-image-button" type="button" aria-label="Збільшити другу частину рецептів BreweryX">
                                 <img src="images/Br2.webp" alt="Друга частина рецептів напоїв BreweryX" width="706" height="433" loading="lazy" decoding="async">
                             </button>
                             <figcaption>Друга частина рецептів</figcaption>
@@ -609,12 +654,58 @@ footer {
             </details>
         </section>
 
+        <section class="mechanic-section">
+            <details class="mechanics-accordion">
+                <summary>
+                    <span class="accordion-title">Дрони</span>
+                    <span class="accordion-arrow" aria-hidden="true">⌄</span>
+                </summary>
+                <div class="mechanic-content">
+                    <p>Потужніша механіка, яка дозволяє політать і розбомбить інші міста дронами.</p>
+                    <ol class="steps">
+                        <li>На самому початку купуємо дрона на марсіанському спавні у "Дронщіка".</li>
+                        <li>Після того, як купили дивимось, що це за дрон. Якщо це керований, тобі просто ставимо поставити мітку тут і літаємо. Якщо наводчивий то йдемо далі</li>
+                        <li>Значить можна поставить тут точку і тоді тут і прилетить, або по команді /drone target "x" "z" вводимо координати і він туда летить.</li>
+                        <li>Після того, як він прилетить вас сповістить до чату і через 10 хвилин усе відновиться.</li>
+                    </ol>
+                    <p class="mechanic-note"><strong>Увага:</strong> Дрони не підривають скрині, бочки та шалкера, а також деякі блоки.</p>
+                    <h3 class="drone-gallery-title">Дрони та їхні характеристики</h3>
+                    <div class="drone-images">
+                        <figure>
+                            <button class="zoomable-image-button drone-image-button" type="button" aria-label="Збільшити характеристики дрона Баба-Яга">
+                                <img src="images/Baba_Yaga.webp" alt="Дрон Баба-Яга: швидкість, вибух і урон" width="1774" height="1000" loading="lazy" decoding="async">
+                            </button>
+                            <figcaption>Баба-Яга</figcaption>
+                        </figure>
+                        <figure>
+                            <button class="zoomable-image-button drone-image-button" type="button" aria-label="Збільшити характеристики дрона Mavic-3">
+                                <img src="images/Mavic-3.webp" alt="Дрон Mavic-3: швидкість, вибух і урон" width="1774" height="1000" loading="lazy" decoding="async">
+                            </button>
+                            <figcaption>Mavic-3</figcaption>
+                        </figure>
+                        <figure>
+                            <button class="zoomable-image-button drone-image-button" type="button" aria-label="Збільшити характеристики дрона Перун-X">
+                                <img src="images/Perun-X.webp" alt="Дрон Перун-X: швидкість, вибух і урон" width="1774" height="1000" loading="lazy" decoding="async">
+                            </button>
+                            <figcaption>Перун-X</figcaption>
+                        </figure>
+                        <figure>
+                            <button class="zoomable-image-button drone-image-button" type="button" aria-label="Збільшити характеристики дрона Pisun-1">
+                                <img src="images/Pisun-1.webp" alt="Дрон Pisun-1: швидкість, вибух і урон" width="1774" height="1000" loading="lazy" decoding="async">
+                            </button>
+                            <figcaption>Pisun-1</figcaption>
+                        </figure>
+                    </div>
+                </div>
+            </details>
+        </section>
+
     </div>
 
 </div>
 
-<dialog class="brewery-image-dialog" aria-label="Збільшене зображення рецептів BreweryX">
-    <button class="brewery-image-dialog-close" type="button" aria-label="Закрити">×</button>
+<dialog class="zoomable-image-dialog" aria-label="Збільшене зображення">
+    <button class="zoomable-image-dialog-close" type="button" aria-label="Закрити">×</button>
     <img alt="" draggable="false">
 </dialog>
 
@@ -627,94 +718,94 @@ function goHome() {
     window.location.href = "index.html";
 }
 
-const breweryImageDialog = document.querySelector(".brewery-image-dialog");
-const breweryDialogImage = breweryImageDialog.querySelector("img");
+const zoomableImageDialog = document.querySelector(".zoomable-image-dialog");
+const zoomableDialogImage = zoomableImageDialog.querySelector("img");
 
-document.querySelectorAll(".brewery-image-button").forEach((button) => {
+document.querySelectorAll(".zoomable-image-button").forEach((button) => {
     button.addEventListener("click", () => {
         const image = button.querySelector("img");
-        breweryDialogImage.src = image.src;
-        breweryDialogImage.alt = image.alt;
-        breweryDialogImage.dataset.zoomLevel = "0";
-        breweryImageDialog.classList.remove("is-zoomed");
-        breweryImageDialog.scrollTo(0, 0);
-        breweryImageDialog.showModal();
+        zoomableDialogImage.src = image.src;
+        zoomableDialogImage.alt = image.alt;
+        zoomableDialogImage.dataset.zoomLevel = "0";
+        zoomableImageDialog.classList.remove("is-zoomed");
+        zoomableImageDialog.scrollTo(0, 0);
+        zoomableImageDialog.showModal();
     });
 });
 
-breweryImageDialog.querySelector(".brewery-image-dialog-close").addEventListener("click", () => {
-    breweryImageDialog.close();
+zoomableImageDialog.querySelector(".zoomable-image-dialog-close").addEventListener("click", () => {
+    zoomableImageDialog.close();
 });
 
-breweryImageDialog.addEventListener("click", (event) => {
-    if (event.target === breweryImageDialog) {
-        breweryImageDialog.close();
+zoomableImageDialog.addEventListener("click", (event) => {
+    if (event.target === zoomableImageDialog) {
+        zoomableImageDialog.close();
     }
 });
 
-let breweryPanStart = null;
-let breweryPanMoved = false;
+let imagePanStart = null;
+let imagePanMoved = false;
 
-breweryDialogImage.addEventListener("pointerdown", (event) => {
-    if (breweryDialogImage.dataset.zoomLevel === "0") return;
+zoomableDialogImage.addEventListener("pointerdown", (event) => {
+    if (zoomableDialogImage.dataset.zoomLevel === "0") return;
 
-    breweryPanStart = {
+    imagePanStart = {
         pointerId: event.pointerId,
         x: event.clientX,
         y: event.clientY,
-        scrollLeft: breweryImageDialog.scrollLeft,
-        scrollTop: breweryImageDialog.scrollTop
+        scrollLeft: zoomableImageDialog.scrollLeft,
+        scrollTop: zoomableImageDialog.scrollTop
     };
-    breweryPanMoved = false;
-    breweryDialogImage.setPointerCapture(event.pointerId);
+    imagePanMoved = false;
+    zoomableDialogImage.setPointerCapture(event.pointerId);
 });
 
-breweryDialogImage.addEventListener("pointermove", (event) => {
-    if (!breweryPanStart || event.pointerId !== breweryPanStart.pointerId) return;
+zoomableDialogImage.addEventListener("pointermove", (event) => {
+    if (!imagePanStart || event.pointerId !== imagePanStart.pointerId) return;
 
-    const deltaX = event.clientX - breweryPanStart.x;
-    const deltaY = event.clientY - breweryPanStart.y;
+    const deltaX = event.clientX - imagePanStart.x;
+    const deltaY = event.clientY - imagePanStart.y;
     if (Math.abs(deltaX) > 3 || Math.abs(deltaY) > 3) {
-        breweryPanMoved = true;
-        breweryDialogImage.classList.add("is-panning");
+        imagePanMoved = true;
+        zoomableDialogImage.classList.add("is-panning");
     }
 
-    if (breweryPanMoved) {
-        breweryImageDialog.scrollLeft = breweryPanStart.scrollLeft - deltaX;
-        breweryImageDialog.scrollTop = breweryPanStart.scrollTop - deltaY;
+    if (imagePanMoved) {
+        zoomableImageDialog.scrollLeft = imagePanStart.scrollLeft - deltaX;
+        zoomableImageDialog.scrollTop = imagePanStart.scrollTop - deltaY;
     }
 });
 
-breweryDialogImage.addEventListener("pointerup", () => {
-    breweryPanStart = null;
-    breweryDialogImage.classList.remove("is-panning");
+zoomableDialogImage.addEventListener("pointerup", () => {
+    imagePanStart = null;
+    zoomableDialogImage.classList.remove("is-panning");
 });
 
-breweryDialogImage.addEventListener("pointercancel", () => {
-    breweryPanStart = null;
-    breweryPanMoved = false;
-    breweryDialogImage.classList.remove("is-panning");
+zoomableDialogImage.addEventListener("pointercancel", () => {
+    imagePanStart = null;
+    imagePanMoved = false;
+    zoomableDialogImage.classList.remove("is-panning");
 });
 
-breweryDialogImage.addEventListener("click", () => {
-    if (breweryPanMoved) {
-        breweryPanMoved = false;
+zoomableDialogImage.addEventListener("click", () => {
+    if (imagePanMoved) {
+        imagePanMoved = false;
         return;
     }
 
-    const nextZoomLevel = breweryDialogImage.dataset.zoomLevel === "0" ? 1 : 0;
-    breweryDialogImage.dataset.zoomLevel = String(nextZoomLevel);
-    breweryImageDialog.classList.toggle("is-zoomed", nextZoomLevel > 0);
-    if (nextZoomLevel === 0) breweryImageDialog.scrollTo(0, 0);
+    const nextZoomLevel = zoomableDialogImage.dataset.zoomLevel === "0" ? 1 : 0;
+    zoomableDialogImage.dataset.zoomLevel = String(nextZoomLevel);
+    zoomableImageDialog.classList.toggle("is-zoomed", nextZoomLevel > 0);
+    if (nextZoomLevel === 0) zoomableImageDialog.scrollTo(0, 0);
 });
 
-breweryImageDialog.addEventListener("close", () => {
-    breweryPanStart = null;
-    breweryPanMoved = false;
-    breweryDialogImage.classList.remove("is-panning");
-    breweryImageDialog.classList.remove("is-zoomed");
-    breweryDialogImage.dataset.zoomLevel = "0";
-    breweryDialogImage.removeAttribute("src");
+zoomableImageDialog.addEventListener("close", () => {
+    imagePanStart = null;
+    imagePanMoved = false;
+    zoomableDialogImage.classList.remove("is-panning");
+    zoomableImageDialog.classList.remove("is-zoomed");
+    zoomableDialogImage.dataset.zoomLevel = "0";
+    zoomableDialogImage.removeAttribute("src");
 });
 </script>
 
