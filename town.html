@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Міста VolyaCraft</title>
+
+<link rel="icon" type="image/x-icon" href="ava.ico">
+    
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Segoe UI', 'Inter', system-ui, sans-serif;
+    min-height: 100vh;
+    color: white;
+    background: linear-gradient(to top, 
+        #ffaa00 0%, 
+        #ffaa00 15%, 
+        #e6a100 25%, 
+        #cc9900 35%, 
+        #4da6ff 60%, 
+        #0057b7 85%, 
+        #003d7a 100%
+    );
+    background-attachment: fixed;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.2);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Кнопка назад */
+.back-home {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 10;
+}
+
+.btn-home {
+    background: rgba(0, 0, 0, 0.2);
+    color: white;
+    padding: 10px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 40px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-home:hover {
+    background: rgba(0, 0, 0, 0.3);
+    transform: scale(1.03);
+}
+
+.btn-home span {
+    font-size: 1.2rem;
+}
+
+h1 {
+    font-size: 4rem;
+    margin: 70px 0 20px;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-weight: 800;
+    letter-spacing: -1px;
+    color: white;
+    position: relative;
+    z-index: 1;
+}
+
+/* Контейнер для міст (вертикальний список) */
+.city-container {
+    max-width: 700px;
+    margin: 20px auto 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 0 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.city-card {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50px;
+    padding: 20px 30px;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Ліва частина картки з іконкою та назвою */
+.city-card-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex: 1;
+}
+
+/* Кругла фотка для Дніпра */
+.city-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    display: block;
+}
+
+/* Стрілка справа */
+.city-card::after {
+    content: '→';
+    font-size: 1.8rem;
+    color: white;
+    opacity: 0.5;
+    margin-left: 15px;
+}
+
+.city-card:hover {
+    transform: scale(1.02);
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.city-card:hover::after {
+    opacity: 1;
+}
+
+/* Модальне вікно */
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: rgba(0, 0, 0, 0.55);
+    padding: 30px;
+    border-radius: 30px;
+    width: 450px;
+    max-width: 90%;
+    text-align: center;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.modal-content h2 {
+    margin-bottom: 15px;
+    color: #ffaa00;
+    font-size: 2.2rem;
+    font-weight: 700;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+}
+
+.modal-content p {
+    margin-bottom: 12px;
+    line-height: 1.5;
+    font-size: 1rem;
+}
+
+.modal-content p:first-of-type {
+    margin-top: 10px;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    border-radius: 15px;
+    text-align: left;
+}
+
+.button-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin: 20px 0 15px;
+}
+
+.btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    width: 240px;
+    max-width: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn:hover {
+    transform: scale(1.03);
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.btn-map { border-left: 3px solid #03A9F4; }
+.btn-ds { border-left: 3px solid #5865F2; }
+.btn-back { border-left: 3px solid #ff6b6b; }
+
+footer {
+    padding: 15px;
+    font-size: 0.95rem;
+    opacity: 0.9;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    z-index: 1;
+}
+
+/* Адаптивність */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 3rem;
+    }
+    
+    .city-card {
+        font-size: 1.2rem;
+        padding: 15px 25px;
+    }
+    
+    .city-icon {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .city-card-left {
+        gap: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .back-home {
+        top: 10px;
+        left: 10px;
+    }
+    
+    h1 {
+        font-size: 2.2rem;
+        margin-top: 60px;
+    }
+    
+    .city-card {
+        font-size: 1rem;
+        padding: 12px 20px;
+    }
+    
+    .city-card::after {
+        font-size: 1.5rem;
+    }
+    
+    .city-icon {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .city-card-left {
+        gap: 10px;
+    }
+    
+    .modal-content {
+        padding: 20px;
+    }
+    
+    .modal-content h2 {
+        font-size: 1.8rem;
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="back-home">
+    <button class="btn-home" onclick="goBack()">
+        <span>←</span> На головну
+    </button>
+</div>
+
+<h1>Міста VolyaCraft</h1>
+
+<div class="city-container" id="cityContainer"></div>
+
+<div class="modal" id="modal">
+    <div class="modal-content">
+        <h2 id="modalTitle"></h2>
+        <p id="modalDescription"></p>
+        <p id="modalMer"></p>
+        <p id="modalPlayers"></p>
+        <p id="modalNation"></p>
+        
+        <div class="button-group" id="modalButtons"></div>
+        
+        <button class="btn btn-back" onclick="closeModal()">Назад</button>
+    </div>
+</div>
+
+<footer>
+    © 2025 - 2026 VolyaCraft | Всі права захищені
+</footer>
+
+<script>
+const cities = [
+    {
+        name: "Немірів",
+        mer: "Мер: makszik",
+        players: "Містян: 4",
+        nation: "Нація: УНР",
+        description: "Невелике місто з малою інфраструктурою, де є мер і чотири містянина, місто має фармілки, та активних гравців, ще у місті є декілька будинків хоча місто не велике, але гарне",
+        dynmap: "http://volyacraft.pp.ua:20088/",
+        icon: "Nemiriv.png" 
+    },
+    {
+        name: "Луганськ",
+        mer: "Мер: kirill9410401",
+        players: "Містян: 3",
+        nation: "Нація: УНР",
+        description: "Невелике місто, що розташувалося на краю України, там є рп споруда та три містянина, мер частенько в онлайні та дуже добрий!",
+        ds: "https://discord.gg/hBmg7KAx",
+        dynmap: "http://volyacraft.pp.ua:20088/",
+        icon: "Lygansk.png"
+    },
+    {
+        name: "Дніпро",
+        mer: "Мер: you8",
+        players: "Містян: 5",
+        nation: "Нація: УНР",
+        description: "Місто Дніпро, є одним з найбільших міст на сервері, має багато людей, та декілька рп споруд, люди добрі і зазвичай в онлайні. Головною особливістю міста є його розташування та мер",
+        ds: "https://discord.gg/mFdept9h4v",
+        dynmap: "http://volyacraft.pp.ua:20088/",
+        // Додаємо властивість для іконки тільки для Дніпра
+        icon: "Dnipro.png"
+    },
+    {
+        name: "житомир",
+        mer: "Мер: CY15",
+        players: "Містян: 2",
+        description: "Невелике місто, з маєтком, що наразі будується, у місті є тільки мер, але він допомогає всьому серверу, та завжди веселий",
+        dynmap: "http://volyacraft.pp.ua:20088/",
+        icon: "Zitomir.png"
+    },
+    {
+        name: "Полтава",
+        mer: "Мер: 2026_Monkey_2026",
+        players: "Містян: 2",
+        nation: "Нація: УНР (столиця нації)",
+        description: "Невелике місто, що зкладається з 1 будинка, та двух людей, що живуть у тому місті. Загалом місто славиться своїми маяками, які працюють по всьому місту, ще в цьому місті є багато цікавих кастомних чар та різних предметів. Місто не пропаде бо мер регулярно заходе на сервер а на балансі міста завжди зостається 300к грн",
+        dynmap: "http://volyacraft.pp.ua:20088/",
+        icon: "Poltava.png"
+    },
+    {
+        name: "Білогірськ",
+        mer: "Мер: wertychku",
+        players: "Містян: 2",
+        description: "Мале містечко, з 1 пам'ятником, загалом будинків небагато і гравців також, місто є одним з найбагатшим через свої рп споруди, але ресурсами є й багатші міста",
+        dynmap: "http://volyacraft.pp.ua:20088/",
+        icon: "Bilogirsk.png"
+    },
+    {
+        name: "Луцьк",
+        mer: "Мер: KirillDehterov",
+        players: "Містянин: 1",
+        description: "Мале поселення, де є мер, він недавно почав розвивати місто, але воно вже має великі статки. Слідкуємо за його ростом обома очима 0-0",
+        dynmap: "http://volyacraft.pp.ua:20088/",
+        icon: "Lychk.png"
+    },
+    {
+        name: "Малин",
+        mer: "Мер: Strak_228",
+        players: "Містян: 4",
+        description: "Невелике місто, що має в собі компанію друзів, що охоче розвивають місто. Наразі мають рп споруду та мера, що не кине місто, щоб воно пропадало. Загалом місто невелике, але дуже гарне та мальовниче у цій назві є сенс, який не кожен зрозуміє!",
+        ds: "https://discord.gg/JE5rY5JM",
+        dynmap: "http://volyacraft.pp.ua:20088/",
+        icon: "Malun.png"
+    },
+    {
+        name: "Суджа(окупована ЗСУ)",
+        mer: "Мер: DedolegMC_10",
+        players: "Містянин: 1",
+        description: "Нове поселення, де є мер, але він тільки почав свою дорогу на цьому сервері і його місто тільки починає рости, тому очікуємо на оновлення!",
+        dynmap: "http://volyacraft.pp.ua:20088/",
+        icon: "Sydza.png"
+    }
+];
+
+const container = document.getElementById("cityContainer");
+const modal = document.getElementById("modal");
+const modalTitle = document.getElementById("modalTitle");
+const modalDescription = document.getElementById("modalDescription");
+const modalMer = document.getElementById("modalMer");
+const modalPlayers = document.getElementById("modalPlayers");
+const modalNation = document.getElementById("modalNation");
+const modalButtons = document.getElementById("modalButtons");
+
+function goBack() {
+    window.location.href = 'index.html';
+}
+
+function fillModal(city) {
+    modalTitle.textContent = city.name;
+    modalDescription.textContent = city.description || 'Опис відсутній';
+    modalMer.textContent = city.mer || 'Мер: невідомий';
+    modalPlayers.textContent = city.players || 'Містян: 0';
+    modalNation.textContent = city.nation || '';
+    
+    modalButtons.innerHTML = '';
+    
+    if (city.dynmap) {
+        const mapBtn = document.createElement('a');
+        mapBtn.href = city.dynmap;
+        mapBtn.target = '_blank';
+        mapBtn.innerHTML = '<button class="btn btn-map">🗺️ Знайти місто на мапі</button>';
+        modalButtons.appendChild(mapBtn);
+    }
+    
+    if (city.ds) {
+        const dsBtn = document.createElement('a');
+        dsBtn.href = city.ds;
+        dsBtn.target = '_blank';
+        dsBtn.innerHTML = '<button class="btn btn-ds">💬 Діскорд міста</button>';
+        modalButtons.appendChild(dsBtn);
+    }
+}
+
+// Створюємо картки міст
+cities.forEach(city => {
+    const card = document.createElement("div");
+    card.className = "city-card";
+    
+    // Створюємо ліву частину з іконкою (якщо є) та назвою
+    const leftDiv = document.createElement("div");
+    leftDiv.className = "city-card-left";
+    
+    // Додаємо іконку тільки для Дніпра
+    if (city.icon) {
+        const icon = document.createElement("img");
+        icon.src = city.icon;
+        icon.alt = city.name;
+        icon.className = "city-icon";
+        // Якщо зображення не завантажиться, показуємо заглушку
+        icon.onerror = function() {
+            this.style.display = 'none';
+        };
+        leftDiv.appendChild(icon);
+    }
+    
+    // Додаємо назву міста
+    const nameSpan = document.createElement("span");
+    nameSpan.textContent = city.name;
+    leftDiv.appendChild(nameSpan);
+    
+    card.appendChild(leftDiv);
+    
+    card.onclick = () => {
+        fillModal(city);
+        modal.style.display = "flex";
+    };
+    
+    container.appendChild(card);
+});
+
+function closeModal() {
+    modal.style.display = "none";
+}
+
+window.onclick = function(event) {
+    if (event.target === modal) {
+        closeModal();
+    }
+}
+</script>
+
+</body>
+</html>
