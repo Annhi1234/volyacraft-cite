@@ -1,1 +1,1 @@
-Сайт для minecraft серверу VolyaCraft - політичний майнкратф сервер volyacraft.pp.ua:20020
+Сайт для minecraft серверу VolyaCraft - політичний майнкратф сервер volyacraft.pp.ua
